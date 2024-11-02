@@ -34,7 +34,7 @@
             
             if (indexContainer.Value + 1 == starLineAnimSets.Length)
             {
-                RaiseChangeState(AnimationStateType.Shown);
+                previewAnimation.Show(finishedCallback: OnPreviewShown);
             }
             else
             {
@@ -43,12 +43,9 @@
             }
         }
 
-        public override void Update()
+        private void OnPreviewShown()
         {
-            foreach (var lineSet in starLineAnimSets)
-            {
-                lineSet.UpdateSelf();
-            }
+            RaiseChangeState(AnimationStateType.Shown);
         }
         
         public override void WantsToHide()

@@ -16,6 +16,11 @@
             {
                 lineSet.HideOpacity(true);
             }
+            
+            foreach (var lineSet in starLineAnimSets)
+            {
+                lineSet.HideLines(true);
+            }
 
             indexContainer.Value = 0;
         }

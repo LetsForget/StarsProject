@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 160824f005864324bf4f844cc7289bb2, type: 3}
+  m_Name: VisualConfig
+  m_EditorClassIdentifier: 
+  <BorderOffset>k__BackingField: 10
+  <SpriteVisual>k__BackingField: {fileID: 6688732460637468526, guid: 01d57b376c3fc4646a3955be804ec3b2, type: 3}
+  <LineVisual>k__BackingField: {fileID: -2195955005334004534, guid: b47b2682ec029e64c921c1b07fec7156, type: 3}

@@ -52,11 +52,16 @@ namespace StarsProject.Visual.Animation
             {
                 animation.UpdateSelf();
             }
+            
+            foreach (var animation in opacityAnimations)
+            {
+                animation.UpdateSelf();
+            }
         }
 
         public void ShowLineAnimation(bool force = false, Action finishedCallback = null)
         {
-            Show(true);
+            ShowOpacity(true);
 
             if (force)
             {
@@ -75,15 +80,34 @@ namespace StarsProject.Visual.Animation
             }
         }
         
+        public void HideLines(bool force, Action finishedCallback = null)
+        {
+            if (force)
+            {
+                foreach (var lineAnimation in lineAnimations)
+                {
+                    lineAnimation.ForceDisappear();
+                }
+                
+                finishedCallback?.Invoke();
+                return;
+            }
+
+            foreach (var lineAnimation in lineAnimations)
+            {
+                lineAnimation.Disappear(finishedCallback);
+            }
+        }
+        
         public void StopLineAnimations()
         {
             foreach (var lineAnimation in lineAnimations)
             {
-                lineAnimation.ForceAppear();
+                lineAnimation.Stop();
             }
         }
         
-        public void Show(bool force = false, Action finishedCallback = null)
+        public void ShowOpacity(bool force = false, Action finishedCallback = null)
         {
             if (force)
             {

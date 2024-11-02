@@ -15,6 +15,16 @@ namespace StarsProject.Visual.Animation.States
             this.indexContainer = indexContainer;
         }
 
+        public override void Update()
+        {
+            previewAnimation.UpdateSelf();
+            
+            foreach (var lineSet in starLineAnimSets)
+            {
+                lineSet.UpdateSelf();
+            }
+        }
+        
         public virtual void WantsToShow() { }
         
         public virtual void WantsToHide() { }

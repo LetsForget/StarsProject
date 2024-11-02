@@ -18,7 +18,7 @@ namespace StarsProject.Visual
         [SerializeField] private Vector2 size;
         
         private SpriteVisual previewVisual;
-        private List<SpriteVisual> starVisuals;
+        private StarAnimation[] starAnimations;
         private StarLineSet[] starLineSteps;
 
         private CameraSetter cameraSetter;
@@ -43,7 +43,7 @@ namespace StarsProject.Visual
             cameraSetter.SetCamera(camera, size, visualConfig.BorderOffset, stars, center);
             
             var starSprite = config.Star;
-            starVisuals = visualGenerator.GenerateStars(starSprite, visualHolder, stars);
+            starAnimations = visualGenerator.GenerateStars(starSprite, visualHolder, stars);
             
             var previewSprite = config.Preview;
             var imageInfo = constellation.ImageInfo;
@@ -58,15 +58,29 @@ namespace StarsProject.Visual
         private void Update()
         {
             animationShower.UpdateSelf();
+        }
 
-            if (Input.GetKeyDown(KeyCode.S))
+        public void OnShowHideButtonPressed()
+        {
+            animationShower.OnShowHideButtonPressed();
+        } 
+
+        public void OnStarMagnitudeValuesChanged(float maxSize, float multiplier)
+        {
+            foreach (var starAnim in starAnimations)
             {
-                animationShower.Show();
+                starAnim.UpdateMagnitude(maxSize, multiplier);
             }
+        }
 
-            if (Input.GetKeyDown(KeyCode.H))
+        public void OnStarLineWidthChanged(float starLineWidth)
+        {
+            foreach (var starLineSet in starLineSteps)
             {
-                animationShower.Hide();
+                foreach (var starLine in starLineSet.Lines)
+                {
+                    starLine.LineVisual.SetWidth(starLineWidth);
+                }
             }
         }
     }

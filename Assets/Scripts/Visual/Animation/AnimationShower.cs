@@ -1,4 +1,5 @@
-﻿using StarsProject.Constellations;
+﻿using System;
+using StarsProject.Constellations;
 
 namespace StarsProject.Visual.Animation
 {
@@ -25,5 +26,21 @@ namespace StarsProject.Visual.Animation
         public void Hide() => stateMachine.CurrentState.WantsToHide();
 
         public void UpdateSelf() => stateMachine.Update();
+
+        public void OnShowHideButtonPressed()
+        {
+            switch (stateMachine.CurrentState.Type)
+            {
+                case AnimationStateType.Hided:
+                case AnimationStateType.Hiding:
+                    Show();
+                    break;
+                case AnimationStateType.ShowingFromHiding:
+                case AnimationStateType.ShowingFromStart:
+                case AnimationStateType.Shown:
+                    Hide();
+                    break;
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using StarsProject.Constellations;
 using StarsProject.Misc;
 using StarsProject.Visual.Animation;
@@ -16,26 +17,25 @@ namespace StarsProject.Visual
             this.config = config;
         }
 
-        public List<SpriteVisual> GenerateStars(Sprite starTex, Transform holder, Dictionary<uint, Star> stars)
+        public StarAnimation[] GenerateStars(Sprite starTex, Transform holder, Dictionary<uint, Star> stars)
         {
-            var values = stars.Values;
+            var values = stars.Values.ToArray();
+            var starAnimations = new StarAnimation[values.Length];
 
-            var starVisuals = new List<SpriteVisual>();
-
-            foreach (var star in values)
+            for (var i = 0; i < starAnimations.Length; i++)
             {
+                var star = values[i];
+                
                 var starVisual = Object.Instantiate(config.SpriteVisual, holder);
 
                 starVisual.SetSprite(starTex);
                 starVisual.SetColor(star.Color);
-
-                starVisual.transform.localScale = CelestialCoordinateConverter.GetScale(star.Magnitude / 2);
+                
                 starVisual.transform.position = star.Coordinate.ToVector3();
-
-                starVisuals.Add(starVisual);
+                starAnimations[i] = new StarAnimation(starVisual, star);
             }
 
-            return starVisuals;
+            return starAnimations;
         }
 
         public SpriteVisual GeneratePreview(Sprite previewSprite, Transform holder, in ImageInfo info)

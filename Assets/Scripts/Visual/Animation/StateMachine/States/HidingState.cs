@@ -33,16 +33,6 @@
             }
         }
         
-        public override void Update()
-        {
-            previewAnimation.UpdateSelf();
-            
-            for (var i = 0; i < starLineAnimSets.Length; i++)
-            {
-                starLineAnimSets[i].UpdateSelf();
-            }
-        }
-        
         public override void WantsToShow()
         {
             RaiseChangeState(AnimationStateType.ShowingFromHiding);

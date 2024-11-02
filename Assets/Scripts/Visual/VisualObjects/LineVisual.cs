@@ -18,5 +18,11 @@ namespace StarsProject.Visual
             LineRenderer.startColor = LineRenderer.startColor.SetOpacity(alpha);
             LineRenderer.endColor = LineRenderer.endColor.SetOpacity(alpha);
         }
+
+        public void SetWidth(float starLineWidth)
+        {
+            LineRenderer.startWidth = starLineWidth;
+            LineRenderer.endWidth = starLineWidth;
+        }
     }
 }
