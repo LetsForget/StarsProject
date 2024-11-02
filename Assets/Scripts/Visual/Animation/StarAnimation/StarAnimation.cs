@@ -1,24 +1,20 @@
-﻿using StarsProject.Constellations;
-using StarsProject.Misc;
-using UnityEngine;
+﻿using StarsProject.Animation;
 
 namespace StarsProject.Visual.Animation
 {
     public class StarAnimation
     {
-        private SpriteVisual visual;
-        private Star star;
+        private StarVisual visual;
+        private ScaleAnimation scaleAnimation;
 
-        public StarAnimation(SpriteVisual visual, Star star)
+        public StarAnimation(StarVisual visual, AnimationConfig config)
         {
             this.visual = visual;
-            this.star = star;
+            scaleAnimation = new ScaleAnimation(visual.Visual, config);
         }
 
-        public void UpdateMagnitude(float maxSize, float multiplier)
-        {
-            var newMagnitude = Mathf.Min((float)(star.Magnitude * multiplier), maxSize);
-            visual.transform.localScale = CelestialCoordinateConverter.GetScale(newMagnitude / 2);
-        }
+        public void Show() => scaleAnimation.Appear(() => scaleAnimation.ForceDisappear());
+
+        public void UpdateSelf() => scaleAnimation.UpdateSelf();
     }
 }

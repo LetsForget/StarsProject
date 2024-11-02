@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using StarsProject.Constellations;
 using StarsProject.Visual.Animation;
 using StarsProject.Visual.Utils;
@@ -18,8 +17,8 @@ namespace StarsProject.Visual
         [SerializeField] private Vector2 size;
         
         private SpriteVisual previewVisual;
-        private StarAnimation[] starAnimations;
-        private StarLineSet[] starLineSteps;
+        private Dictionary<uint, StarVisual> starVisuals;
+        private StarLineVisualSet[] starLineSteps;
 
         private CameraSetter cameraSetter;
         private VisualsGenerator visualGenerator;
@@ -43,14 +42,14 @@ namespace StarsProject.Visual
             cameraSetter.SetCamera(camera, size, visualConfig.BorderOffset, stars, center);
             
             var starSprite = config.Star;
-            starAnimations = visualGenerator.GenerateStars(starSprite, visualHolder, stars);
+            starVisuals = visualGenerator.GenerateStars(starSprite, visualHolder, stars);
             
             var previewSprite = config.Preview;
             var imageInfo = constellation.ImageInfo;
             previewVisual = visualGenerator.GeneratePreview(previewSprite, visualHolder, in imageInfo);
 
             var lines = constellation.Lines;
-            starLineSteps = visualGenerator.GenerateLines(visualHolder, stars, lines);
+            starLineSteps = visualGenerator.GenerateLines(visualHolder, starVisuals, lines);
             
             animationShower = new AnimationShower(animationConfig, config.Constellation.ImageInfo, previewVisual, starLineSteps);
         }
@@ -67,7 +66,7 @@ namespace StarsProject.Visual
 
         public void OnStarMagnitudeValuesChanged(float maxSize, float multiplier)
         {
-            foreach (var starAnim in starAnimations)
+            foreach (var starAnim in starVisuals.Values)
             {
                 starAnim.UpdateMagnitude(maxSize, multiplier);
             }

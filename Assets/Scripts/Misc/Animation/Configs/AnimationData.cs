@@ -33,6 +33,6 @@ namespace StarsProject.Animation
             }
         }
 
-        [SerializeField] private AnimationCurve _reversedCurve;
+        private AnimationCurve _reversedCurve;
     }
 }

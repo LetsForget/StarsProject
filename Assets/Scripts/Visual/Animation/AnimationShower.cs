@@ -7,7 +7,7 @@ namespace StarsProject.Visual.Animation
         private AnimationStateMachine stateMachine;
         private AnimationShowerSettings settings;
         
-        public AnimationShower(ConstellationAnimationConfig config, ImageInfo previewInfo, SpriteVisual previewVisual, StarLineSet[] starLineSets)
+        public AnimationShower(ConstellationAnimationConfig config, ImageInfo previewInfo, SpriteVisual previewVisual, StarLineVisualSet[] starLineSets)
         { 
             var previewAnimation = new PreviewAnimation(previewInfo, previewVisual, config.PreviewOpacityConfig);
             var starLineAnimationSets = new StarLineAnimationsSet[starLineSets.Length];
@@ -16,7 +16,8 @@ namespace StarsProject.Visual.Animation
             
             for (var i = 0; i < starLineAnimationSets.Length; i++)
             {
-                starLineAnimationSets[i] = new StarLineAnimationsSet(starLineSets[i], config.LineDrawConfig, config.LineOpacityConfig);
+                starLineAnimationSets[i] = new StarLineAnimationsSet(starLineSets[i], config.LineDrawConfig,
+                    config.LineOpacityConfig, config.StarScaleConfig);
             }
             
             stateMachine = new AnimationStateMachine(previewAnimation, starLineAnimationSets, indexContainer, settings);

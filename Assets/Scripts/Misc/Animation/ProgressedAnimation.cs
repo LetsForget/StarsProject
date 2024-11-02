@@ -24,15 +24,25 @@ namespace StarsProject.Animation
             this.finishedCallback = finishedCallback;
         } 
 
-        public void ForceAppear() => ForceFinishWithValues(config.AppearData.Duration, 1);
-        
+        public void ForceAppear()
+        {
+            var dur = config.AppearData.Duration;
+            var prog = config.AppearData.Curve.Evaluate(1);
+            
+            ForceFinishWithValues(dur, prog);
+        }
+
         public void Disappear(Action finishedCallback = null)
         {
             SetState(PlaybackState.Backward, config.DisappearData.Duration, config.DisappearData.ReversedCurve);
             this.finishedCallback = finishedCallback;
         } 
 
-        public void ForceDisappear() => ForceFinishWithValues(0, 0);
+        public void ForceDisappear()
+        {
+            var prog = config.DisappearData.Curve.Evaluate(0);
+            ForceFinishWithValues(0, prog);
+        }
 
         public void Stop()
         {

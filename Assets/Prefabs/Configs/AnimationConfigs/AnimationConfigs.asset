@@ -15,3 +15,4 @@ MonoBehaviour:
   <PreviewOpacityConfig>k__BackingField: {fileID: 11400000, guid: bc8216592a1708845b3b018ccf2f1853, type: 2}
   <LineOpacityConfig>k__BackingField: {fileID: 11400000, guid: 624bd498bb239aa458a5b87992c7a9e8, type: 2}
   <LineDrawConfig>k__BackingField: {fileID: 11400000, guid: 3fc7116bfd2baca4ba816e76e91382a0, type: 2}
+  <StarScaleConfig>k__BackingField: {fileID: 11400000, guid: 10e12068014854947a9fe398754b2021, type: 2}

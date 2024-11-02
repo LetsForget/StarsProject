@@ -17,14 +17,14 @@ namespace StarsProject.Visual
             this.config = config;
         }
 
-        public StarAnimation[] GenerateStars(Sprite starTex, Transform holder, Dictionary<uint, Star> stars)
+        public Dictionary<uint, StarVisual> GenerateStars(Sprite starTex, Transform holder, Dictionary<uint, Star> stars)
         {
-            var values = stars.Values.ToArray();
-            var starAnimations = new StarAnimation[values.Length];
+            var starVisuals = new Dictionary<uint,StarVisual>();
 
-            for (var i = 0; i < starAnimations.Length; i++)
+            foreach (var valuePair in stars)
             {
-                var star = values[i];
+                var index = valuePair.Key;
+                var star = valuePair.Value;
                 
                 var starVisual = Object.Instantiate(config.SpriteVisual, holder);
 
@@ -32,10 +32,10 @@ namespace StarsProject.Visual
                 starVisual.SetColor(star.Color);
                 
                 starVisual.transform.position = star.Coordinate.ToVector3();
-                starAnimations[i] = new StarAnimation(starVisual, star);
+                starVisuals.Add(index, new StarVisual(starVisual, star));
             }
 
-            return starAnimations;
+            return starVisuals;
         }
 
         public SpriteVisual GeneratePreview(Sprite previewSprite, Transform holder, in ImageInfo info)
@@ -46,14 +46,14 @@ namespace StarsProject.Visual
             return preview;
         }
 
-        public StarLineSet[] GenerateLines(Transform holder, Dictionary<uint, Star> stars, LineQueuePart[] lineQueueParts)
+        public StarLineVisualSet[] GenerateLines(Transform holder, Dictionary<uint, StarVisual> stars, LineQueuePart[] lineQueueParts)
         {
-            var starLineSets = new StarLineSet[lineQueueParts.Length];
+            var starLineSets = new StarLineVisualSet[lineQueueParts.Length];
 
             for (var i = 0; i < lineQueueParts.Length; i++)
             {
                 var queuePart = lineQueueParts[i];
-                var starLines = new StarLine[queuePart.Lines.Count];
+                var starLines = new StarLineVisual[queuePart.Lines.Count];
 
                 for (var j = 0; j < starLines.Length; j++)
                 {
@@ -71,10 +71,10 @@ namespace StarsProject.Visual
                     var lineVisual = Object.Instantiate(config.LineVisual, holder);
                     lineVisual.SetOpacity(0);
 
-                    starLines[j] = new StarLine(lineVisual, from, to);
+                    starLines[j] = new StarLineVisual(lineVisual, from, to);
                 }
 
-                starLineSets[i] = new StarLineSet(starLines);
+                starLineSets[i] = new StarLineVisualSet(starLines);
             }
 
             return starLineSets;

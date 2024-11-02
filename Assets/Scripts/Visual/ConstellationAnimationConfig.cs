@@ -9,5 +9,6 @@ namespace StarsProject.Visual.Animation
         [field: SerializeField] public AnimationConfig PreviewOpacityConfig { get; private set; }
         [field: SerializeField] public AnimationConfig LineOpacityConfig { get; private set; }
         [field: SerializeField] public AnimationConfig LineDrawConfig { get; private set; }
+        [field: SerializeField] public AnimationConfig StarScaleConfig { get; private set; }
     }
 }

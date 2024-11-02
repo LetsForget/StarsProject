@@ -6,29 +6,30 @@ namespace StarsProject.Visual.Animation
 {
     public class StarLineAnimationsSet
     {
-        private StarLineSet startLineSet;
+        private StarLineVisualSet starLineSet;
         private LineAnimation[] lineAnimations;
         private OpacityAnimation[] opacityAnimations;
-
+        private StarAnimation[] starAnimations;
+        
         public int AnimationsCount => opacityAnimations.Length;
         
-        public StarLineAnimationsSet(StarLineSet startLineSet, AnimationConfig drawLineConfig, AnimationConfig opacityConfig)
+        public StarLineAnimationsSet(StarLineVisualSet starLineSet, AnimationConfig drawLineConfig, AnimationConfig opacityConfig, AnimationConfig starScaleConfig)
         {
-            this.startLineSet = startLineSet;
-            var lineCount = this.startLineSet.Lines.Length;
+            this.starLineSet = starLineSet;
+            
+            var lineCount = this.starLineSet.Lines.Length;
             
             lineAnimations = new LineAnimation[lineCount];
             opacityAnimations = new OpacityAnimation[lineCount];
+            starAnimations = new StarAnimation[lineCount];
             
             for (var i = 0 ; i < lineCount; i++)
             {
-                var line = this.startLineSet.Lines[i];
+                var line = this.starLineSet.Lines[i];
                 
-                var lineAnimation = new LineAnimation(line.LineVisual, drawLineConfig);
-                lineAnimations[i] = lineAnimation;
-
-                var opacityAnimation = new OpacityAnimation(line.LineVisual, opacityConfig);
-                opacityAnimations[i] = opacityAnimation;
+                lineAnimations[i] = new LineAnimation(line.LineVisual, drawLineConfig);
+                opacityAnimations[i] = new OpacityAnimation(line.LineVisual, opacityConfig);
+                starAnimations[i] = new StarAnimation(line.From, starScaleConfig);
             }
             
             RefreshPositions();
@@ -39,10 +40,19 @@ namespace StarsProject.Visual.Animation
             for (var i = 0; i < lineAnimations.Length; i++)
             {
                 var lineAnim = lineAnimations[i];
-                var startLine = startLineSet.Lines[i];
+                var startLine = starLineSet.Lines[i];
 
-                lineAnim.From = startLine.From.Coordinate.ToVector3();
-                lineAnim.To = startLine.To.Coordinate.ToVector3();
+                var fromStar = startLine.From.Star;
+                var toStar = startLine.To.Star;
+
+                var fromPos = fromStar.Coordinate.ToVector3();
+                var toPos = toStar.Coordinate.ToVector3();
+                
+                var direction = (toPos - fromPos) / 2;
+                var middlePoint = (fromPos + toPos) / 2;
+                
+                lineAnim.From = middlePoint - direction * 0.9f;
+                lineAnim.To = middlePoint + direction * 0.9f;
             }
         }
         
@@ -57,8 +67,21 @@ namespace StarsProject.Visual.Animation
             {
                 animation.UpdateSelf();
             }
+            
+            foreach (var animation in starAnimations)
+            {
+                animation.UpdateSelf();
+            }
         }
 
+        public void ShowStarAnimation()
+        {
+            foreach (var animation in starAnimations)
+            {
+          //      animation.Show();
+            }
+        }
+        
         public void ShowLineAnimations(bool force = false, Action finishedCallback = null)
         {
             if (force)

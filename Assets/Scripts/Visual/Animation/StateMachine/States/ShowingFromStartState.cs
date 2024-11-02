@@ -28,6 +28,7 @@
 
                 lineAnimations.ShowOpacity(true);
                 lineAnimations.ShowLineAnimations(finishedCallback: OnLineSetFinished);
+                lineAnimations.ShowStarAnimation();
             }
             else
             {
