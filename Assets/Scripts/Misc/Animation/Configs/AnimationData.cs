@@ -8,7 +8,8 @@ namespace StarsProject.Animation
     {
         [field: SerializeField] public AnimationCurve Curve { get; private set; }
         [field: SerializeField] public float Duration { get; private set; }
-
+        [field: SerializeField] public bool UseReversedCurve { get; private set; }
+        
         public AnimationCurve ReversedCurve
         {
             get

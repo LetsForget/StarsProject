@@ -97,7 +97,11 @@ namespace StarsProject.Animation
             state = newState;
 
             time = Mathf.Clamp(time, 0f, duration);
-            time = reversedCurve.Evaluate(progress) * duration;
+
+            if (config.UseReversedCurve)
+            {
+                time = reversedCurve.Evaluate(progress) * duration;
+            }
         }
 
         private void ForceFinishWithValues(in float time, in float progress)

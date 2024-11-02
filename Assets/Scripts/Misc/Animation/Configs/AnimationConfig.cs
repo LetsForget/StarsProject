@@ -7,5 +7,6 @@ namespace StarsProject.Animation
     {
         [field: SerializeField] public AnimationData AppearData { get; private set; }
         [field: SerializeField] public AnimationData DisappearData { get; private set; }
+        [field: SerializeField] public bool UseReversedCurve { get; private set; }
     }
 }

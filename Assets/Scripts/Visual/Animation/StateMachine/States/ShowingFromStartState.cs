@@ -28,7 +28,6 @@
 
                 lineAnimations.ShowOpacity(true);
                 lineAnimations.ShowLineAnimations(finishedCallback: OnLineSetFinished);
-                lineAnimations.ShowStarAnimation();
             }
             else
             {
@@ -44,6 +43,8 @@
             {
                 return;
             }
+            
+            starLineAnimSets[indexContainer.Value].ShowToStarAnimation();
             
             if (indexContainer.Value + 1 == starLineAnimSets.Length)
             {

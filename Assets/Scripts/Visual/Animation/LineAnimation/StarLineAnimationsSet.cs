@@ -9,7 +9,9 @@ namespace StarsProject.Visual.Animation
         private StarLineVisualSet starLineSet;
         private LineAnimation[] lineAnimations;
         private OpacityAnimation[] opacityAnimations;
-        private StarAnimation[] starAnimations;
+        
+        private StarAnimation[] fromStarAnimations;
+        private StarAnimation[] toStarAnimations;
         
         public int AnimationsCount => opacityAnimations.Length;
         
@@ -21,7 +23,8 @@ namespace StarsProject.Visual.Animation
             
             lineAnimations = new LineAnimation[lineCount];
             opacityAnimations = new OpacityAnimation[lineCount];
-            starAnimations = new StarAnimation[lineCount];
+            fromStarAnimations = new StarAnimation[lineCount];
+            toStarAnimations = new StarAnimation[lineCount];
             
             for (var i = 0 ; i < lineCount; i++)
             {
@@ -29,7 +32,8 @@ namespace StarsProject.Visual.Animation
                 
                 lineAnimations[i] = new LineAnimation(line.LineVisual, drawLineConfig);
                 opacityAnimations[i] = new OpacityAnimation(line.LineVisual, opacityConfig);
-                starAnimations[i] = new StarAnimation(line.From, starScaleConfig);
+                fromStarAnimations[i] = new StarAnimation(line.From, starScaleConfig);
+                toStarAnimations[i] = new StarAnimation(line.To, starScaleConfig);
             }
             
             RefreshPositions();
@@ -68,17 +72,25 @@ namespace StarsProject.Visual.Animation
                 animation.UpdateSelf();
             }
             
-            foreach (var animation in starAnimations)
+            foreach (var animation in fromStarAnimations)
+            {
+                animation.UpdateSelf();
+            }
+            
+            foreach (var animation in toStarAnimations)
             {
                 animation.UpdateSelf();
             }
         }
 
-        public void ShowStarAnimation()
+        public void ShowFromStarAnimation() => ShowStarAnimation(fromStarAnimations);
+        public void ShowToStarAnimation() => ShowStarAnimation(toStarAnimations);
+
+        private void ShowStarAnimation(StarAnimation[] starAnimations)
         {
             foreach (var animation in starAnimations)
             {
-          //      animation.Show();
+                animation.Show();
             }
         }
         
