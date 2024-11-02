@@ -3,7 +3,7 @@
 namespace StarsProject.Constellations
 {
     [Serializable]
-    public struct ImageInfo
+    public class ImageInfo
     {
         public CelestialCoordinate coordinate;
         public float scale;

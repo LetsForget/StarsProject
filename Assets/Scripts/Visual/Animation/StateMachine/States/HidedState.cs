@@ -1,0 +1,28 @@
+﻿namespace StarsProject.Visual.Animation.States
+{
+    public class HidedState : AnimationState
+    {
+        public override AnimationStateType Type => AnimationStateType.Hided;
+        
+        public HidedState(PreviewAnimation previewAnimation, StarLineAnimationsSet[] starLineAnimSets,
+            IndexContainer indexContainer) : base(previewAnimation, starLineAnimSets, indexContainer)
+        { }
+        
+        public override void OnEnter()
+        {
+            previewAnimation.Hide(true);
+            
+            foreach (var lineSet in starLineAnimSets)
+            {
+                lineSet.HideOpacity(true);
+            }
+
+            indexContainer.Value = 0;
+        }
+
+        public override void WantsToShow()
+        {
+            RaiseChangeState(AnimationStateType.ShowingFromStart);
+        }
+    }
+}

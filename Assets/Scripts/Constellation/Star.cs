@@ -4,17 +4,17 @@ using UnityEngine;
 namespace StarsProject.Constellations
 {
     [Serializable]
-    public struct Star
+    public class Star
     {
-        public CelestialCoordinate coordinate;
-        public Color color;
-        public double magnitude;
+        [field: SerializeField] public CelestialCoordinate Coordinate { get; private set; }
+        [field: SerializeField] public Color Color { get; private set; }
+        [field: SerializeField] public double Magnitude { get; private set; }
         
         public Star(CelestialCoordinate coordinate, Color color, double magnitude)
         {
-            this.coordinate = coordinate;
-            this.color = color;
-            this.magnitude = magnitude;
+            Coordinate = coordinate;
+            Color = color;
+            Magnitude = magnitude;
         }
     }
 }

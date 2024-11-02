@@ -1,9 +1,10 @@
-﻿using StarsProject.Misc;
+﻿using StarsProject.Animation;
+using StarsProject.Misc;
 using UnityEngine;
 
 namespace StarsProject.Visual
 {
-    public class LineVisual : MonoBehaviour
+    public class LineVisual : MonoBehaviour, ILinePositionsChangeable, IOpacityChangeable
     {
         [field: SerializeField] public LineRenderer LineRenderer { get; private set; }
 

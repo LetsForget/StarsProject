@@ -1,6 +1,6 @@
-﻿
-using System;
+﻿using System;
 using StarsProject.Constellations;
+using StarsProject.Visual;
 using UnityEngine;
 
 namespace StarsProject.Misc
@@ -10,8 +10,11 @@ namespace StarsProject.Misc
         public static readonly float RAMax = 24;
         public static readonly float DecMax = 180;
         
-        public static Vector3 ToVector3(this CelestialCoordinate coordinate, CelestialCoordinate center, Vector2 size)
+        public static Vector3 ToVector3(this CelestialCoordinate coordinate)
         {
+            var center = CelestialCoordinatesHelper.Center;
+            var size = CelestialCoordinatesHelper.Size;
+            
             var decOffset = DecMax / 2 - center.dec;
             var raOffset = RAMax / 2 - center.ra;
             
@@ -25,8 +28,10 @@ namespace StarsProject.Misc
             return new Vector3((float)x, (float)y, z);
         }
 
-        public static Vector3 GetScale(double scale, Vector2 size)
+        public static Vector3 GetScale(double scale)
         {
+            var size = CelestialCoordinatesHelper.Size;
+            
             var x = scale / 7.5 / RAMax * size.x;
             var y = scale * 2 / DecMax * size.y;
             var z = 1;

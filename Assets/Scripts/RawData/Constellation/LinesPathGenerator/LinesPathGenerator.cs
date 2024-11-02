@@ -7,7 +7,7 @@ namespace StarsProject.RawData.Constellations
 {
     public static class LinesPathGenerator
     {
-        public static OneTimeLines[] GenerateLinePaths(LineData[] lineDatas, Dictionary<uint, Star> stars,
+        public static LineQueuePart[] GenerateLinePaths(LineData[] lineDatas, Dictionary<uint, Star> stars,
             CelestialCoordinate center)
         {
             var tree = GenerateTree(lineDatas);
@@ -54,12 +54,12 @@ namespace StarsProject.RawData.Constellations
             return treeParts.Values.ToList();
         }
 
-        private static OneTimeLines[] GeneratePath(List<PointTreePart> parts, Dictionary<uint, Star> stars,
+        private static LineQueuePart[] GeneratePath(List<PointTreePart> parts, Dictionary<uint, Star> stars,
             CelestialCoordinate center)
         {
-            var startPart = parts.OrderBy(p => stars[p.Index].coordinate.Distance(center)).First();
+            var startPart = parts.OrderBy(p => stars[p.Index].Coordinate.Distance(center)).First();
 
-            var linePaths = new Dictionary<int, OneTimeLines>();
+            var linePaths = new Dictionary<int, LineQueuePart>();
             
             FillPath(linePaths, 0, startPart, true);
             FillPath(linePaths, 0, startPart, false);
@@ -69,7 +69,7 @@ namespace StarsProject.RawData.Constellations
                             .ToArray();
         }
 
-        private static void FillPath(Dictionary<int, OneTimeLines> linePaths, int depth, PointTreePart startPart,
+        private static void FillPath(Dictionary<int, LineQueuePart> linePaths, int depth, PointTreePart startPart,
             bool direction)
         {
             var parts = direction ? startPart.Children : startPart.Parents;
@@ -80,7 +80,7 @@ namespace StarsProject.RawData.Constellations
                 
                 if (!linePaths.TryGetValue(depth, out var oneTimeLines))
                 {
-                    oneTimeLines = new OneTimeLines();
+                    oneTimeLines = new LineQueuePart();
                     linePaths.Add(depth, oneTimeLines);
                 }
 

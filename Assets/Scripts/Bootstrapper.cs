@@ -11,7 +11,7 @@ namespace StarsProject
         
         private void Start()
         {
-            visualiser.Show(config);
+            visualiser.Initialise(config);
         }
     }
 }

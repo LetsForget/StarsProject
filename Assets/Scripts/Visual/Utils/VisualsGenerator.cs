@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using StarsProject.Constellations;
 using StarsProject.Misc;
+using StarsProject.Visual.Animation;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -15,8 +16,7 @@ namespace StarsProject.Visual
             this.config = config;
         }
 
-        public List<SpriteVisual> GenerateStars(Sprite starTex, Transform holder,
-            Vector2 size, Dictionary<uint, Star> stars, CelestialCoordinate center)
+        public List<SpriteVisual> GenerateStars(Sprite starTex, Transform holder, Dictionary<uint, Star> stars)
         {
             var values = stars.Values;
 
@@ -27,10 +27,10 @@ namespace StarsProject.Visual
                 var starVisual = Object.Instantiate(config.SpriteVisual, holder);
 
                 starVisual.SetSprite(starTex);
-                starVisual.SetColor(star.color);
+                starVisual.SetColor(star.Color);
 
-                starVisual.transform.localScale = CelestialCoordinateConverter.GetScale(star.magnitude / 2, size);
-                starVisual.transform.position = star.coordinate.ToVector3(center, size);
+                starVisual.transform.localScale = CelestialCoordinateConverter.GetScale(star.Magnitude / 2);
+                starVisual.transform.position = star.Coordinate.ToVector3();
 
                 starVisuals.Add(starVisual);
             }
@@ -38,29 +38,27 @@ namespace StarsProject.Visual
             return starVisuals;
         }
 
-        public SpriteVisual GeneratePreview(Sprite previewSprite, Transform holder, Vector2 size, ImageInfo info,
-            CelestialCoordinate center)
+        public SpriteVisual GeneratePreview(Sprite previewSprite, Transform holder, in ImageInfo info)
         {
             var preview = GameObject.Instantiate(config.SpriteVisual, holder);
-
             preview.SetSprite(previewSprite);
-
-            preview.transform.localScale = CelestialCoordinateConverter.GetScale(info.scale, size);
-            preview.transform.position = info.coordinate.ToVector3(center, size);
-            preview.transform.rotation = Quaternion.AngleAxis(info.angle, -Vector3.forward);
-
+            
             return preview;
         }
 
-        public List<LineVisual> GenerateLines(Transform holder, Vector2 size,
-            Dictionary<uint, Star> stars, OneTimeLines[] oneTimeLines, CelestialCoordinate center)
+        public StarLineSet[] GenerateLines(Transform holder, Dictionary<uint, Star> stars, LineQueuePart[] lineQueueParts)
         {
-            var starLineVisuals = new List<LineVisual>();
+            var starLineSets = new StarLineSet[lineQueueParts.Length];
 
-            foreach (var oneTimeLine in oneTimeLines)
+            for (var i = 0; i < lineQueueParts.Length; i++)
             {
-                foreach (var line in oneTimeLine.Lines)
+                var queuePart = lineQueueParts[i];
+                var starLines = new StarLine[queuePart.Lines.Count];
+
+                for (var j = 0; j < starLines.Length; j++)
                 {
+                    var line = queuePart.Lines[j];
+                    
                     var fromIndex = line.from;
                     var toIndex = line.to;
 
@@ -70,18 +68,16 @@ namespace StarsProject.Visual
                         continue;
                     }
 
-                    var lineVisual = GameObject.Instantiate(config.LineVisual, holder);
+                    var lineVisual = Object.Instantiate(config.LineVisual, holder);
+                    lineVisual.SetOpacity(0);
 
-                    var fromPosition = from.coordinate.ToVector3(center, size);
-                    var toPosition = to.coordinate.ToVector3(center, size);
-
-                    lineVisual.SetPoints(fromPosition, toPosition);
-
-                    starLineVisuals.Add(lineVisual);
+                    starLines[j] = new StarLine(lineVisual, from, to);
                 }
+
+                starLineSets[i] = new StarLineSet(starLines);
             }
-            
-            return starLineVisuals;
+
+            return starLineSets;
         }
     }
 }

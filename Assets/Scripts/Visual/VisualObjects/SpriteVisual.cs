@@ -1,9 +1,10 @@
-﻿using StarsProject.Misc;
+﻿using StarsProject.Animation;
+using StarsProject.Misc;
 using UnityEngine;
 
 namespace StarsProject.Visual
 {
-    public class SpriteVisual : MonoBehaviour
+    public class SpriteVisual : MonoBehaviour, IOpacityChangeable
     {
         [field: SerializeField] protected SpriteRenderer Renderer { get; private set; }
 

@@ -17,12 +17,12 @@ namespace StarsProject.Visual.Utils
             camera.transform.position = camPos;
 
             var firstStar = stars.Values.First();
-            var minY = firstStar.coordinate.ToVector3(center, size).y;
+            var minY = firstStar.Coordinate.ToVector3().y;
             var maxY = minY;
 
             foreach (var star in stars.Values)
             {
-                var starY = star.coordinate.ToVector3(center, size).y;
+                var starY = star.Coordinate.ToVector3().y;
                 
                 minY = Math.Min(starY, minY);
                 maxY = Math.Max(starY, maxY);
