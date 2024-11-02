@@ -1,31 +1,26 @@
-﻿using System;
-using StarsProject.Constellations;
+﻿using StarsProject.Constellations;
 
 namespace StarsProject.Visual.Animation
 {
     public class AnimationShower
     {
         private AnimationStateMachine stateMachine;
+        private AnimationShowerSettings settings;
         
         public AnimationShower(ConstellationAnimationConfig config, ImageInfo previewInfo, SpriteVisual previewVisual, StarLineSet[] starLineSets)
         { 
             var previewAnimation = new PreviewAnimation(previewInfo, previewVisual, config.PreviewOpacityConfig);
             var starLineAnimationSets = new StarLineAnimationsSet[starLineSets.Length];
             var indexContainer = new IndexContainer();
+            settings = new AnimationShowerSettings();
             
             for (var i = 0; i < starLineAnimationSets.Length; i++)
             {
                 starLineAnimationSets[i] = new StarLineAnimationsSet(starLineSets[i], config.LineDrawConfig, config.LineOpacityConfig);
             }
             
-            stateMachine = new AnimationStateMachine(previewAnimation, starLineAnimationSets, indexContainer);
+            stateMachine = new AnimationStateMachine(previewAnimation, starLineAnimationSets, indexContainer, settings);
         }
-
-        public void Show() => stateMachine.CurrentState.WantsToShow();
-
-        public void Hide() => stateMachine.CurrentState.WantsToHide();
-
-        public void UpdateSelf() => stateMachine.Update();
 
         public void OnShowHideButtonPressed()
         {
@@ -41,6 +36,24 @@ namespace StarsProject.Visual.Animation
                     Hide();
                     break;
             }
+        }
+        
+        private void Show() => stateMachine.CurrentState.WantsToShow();
+
+        private void Hide() => stateMachine.CurrentState.WantsToHide();
+
+        public void UpdateSelf() => stateMachine.Update();
+
+        public void OnShowPreviewSettingChanged(bool value)
+        {
+            settings.ShowPreview = value;
+            stateMachine.CurrentState.ShowPreviewSettingChanged(value);
+        }
+
+        public void OnShowLinesSettingChanged(bool value)
+        {
+            settings.ShowStarLines = value;
+            stateMachine.CurrentState.ShowLinesSettingChanged(value);
         }
     }
 }

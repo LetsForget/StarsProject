@@ -83,5 +83,15 @@ namespace StarsProject.Visual
                 }
             }
         }
+
+        public void OnShowPreviewSettingChanged(bool value)
+        {
+            animationShower.OnShowPreviewSettingChanged(value);
+        }
+        
+        public void OnShowLinesSettingChanged(bool value)
+        {
+            animationShower.OnShowLinesSettingChanged(value);
+        }
     }
 }

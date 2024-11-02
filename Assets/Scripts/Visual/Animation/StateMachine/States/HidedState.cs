@@ -3,11 +3,12 @@
     public class HidedState : AnimationState
     {
         public override AnimationStateType Type => AnimationStateType.Hided;
-        
+
         public HidedState(PreviewAnimation previewAnimation, StarLineAnimationsSet[] starLineAnimSets,
-            IndexContainer indexContainer) : base(previewAnimation, starLineAnimSets, indexContainer)
+            IndexContainer indexContainer, AnimationShowerSettings settings) : base(previewAnimation,
+            starLineAnimSets, indexContainer, settings)
         { }
-        
+
         public override void OnEnter()
         {
             previewAnimation.Hide(true);

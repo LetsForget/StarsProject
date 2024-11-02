@@ -10,8 +10,8 @@ namespace StarsProject.UI
     {
         public event Action ShowHideButtonPressed;
         
-        public event Action<bool> ShowPreviewSettingChanged;
-        public event Action<bool> ShowLineSettingChanged;
+        public event Action ShowPreviewSettingChanged;
+        public event Action ShowLineSettingChanged;
 
         public event Action MaximalStarMagnitudeChanged;
         public event Action StarMagnitudeMultiplierChanged;
@@ -27,7 +27,7 @@ namespace StarsProject.UI
         [SerializeField] private Button showHideButton;
 
         public bool ShowPreviewSettingsValue => previewToggle.isOn;
-        public bool ShowLines => previewToggle.isOn;
+        public bool ShowLines => lineToggle.isOn;
 
         public float MaximalMagnitude => float.Parse(maximalStarSizeField.text,NumberStyles.Float, CultureInfo.InvariantCulture);
         public float MagnitudeMultiplier => float.Parse(starMultiplierField.text, NumberStyles.Float, CultureInfo.InvariantCulture);
@@ -35,8 +35,8 @@ namespace StarsProject.UI
         
         private void Start()
         {
-            previewToggle.onValueChanged.AddListener(value => ShowPreviewSettingChanged?.Invoke(value));
-            lineToggle.onValueChanged.AddListener(value => ShowLineSettingChanged?.Invoke(value));
+            previewToggle.onValueChanged.AddListener(_ => ShowPreviewSettingChanged?.Invoke());
+            lineToggle.onValueChanged.AddListener(_ => ShowLineSettingChanged?.Invoke());
             
             maximalStarSizeField.onValueChanged.AddListener(_ => MaximalStarMagnitudeChanged?.Invoke());
             starMultiplierField.onValueChanged.AddListener(_ => StarMagnitudeMultiplierChanged?.Invoke());

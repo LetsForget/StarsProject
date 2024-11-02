@@ -59,10 +59,8 @@ namespace StarsProject.Visual.Animation
             }
         }
 
-        public void ShowLineAnimation(bool force = false, Action finishedCallback = null)
+        public void ShowLineAnimations(bool force = false, Action finishedCallback = null)
         {
-            ShowOpacity(true);
-
             if (force)
             {
                 foreach (var lineAnimation in lineAnimations)

@@ -3,18 +3,15 @@
     public class ShowingFromHidingState : AnimationState
     {
         public override AnimationStateType Type => AnimationStateType.ShowingFromHiding;
-        
-        private int appearingLinesCount;
-        
+  
         public ShowingFromHidingState(PreviewAnimation previewAnimation, StarLineAnimationsSet[] starLineAnimSets,
-            IndexContainer indexContainer) : base(previewAnimation, starLineAnimSets, indexContainer)
+            IndexContainer indexContainer, AnimationShowerSettings settings) : base(previewAnimation, starLineAnimSets, indexContainer, settings)
         { }
 
         public override void OnEnter()
         {
             for (var i = 0; i <= indexContainer.Value; i++)
             {
-                appearingLinesCount += starLineAnimSets[i].AnimationsCount;
                 starLineAnimSets[i].ShowOpacity();
             }
             

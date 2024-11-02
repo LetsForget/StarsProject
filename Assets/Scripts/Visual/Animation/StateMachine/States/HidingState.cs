@@ -7,7 +7,8 @@
         private int animCount;
         
         public HidingState(PreviewAnimation previewAnimation, StarLineAnimationsSet[] starLineAnimSets,
-            IndexContainer indexContainer) : base(previewAnimation, starLineAnimSets, indexContainer)
+            IndexContainer indexContainer, AnimationShowerSettings settings) : base(previewAnimation, 
+            starLineAnimSets, indexContainer, settings)
         { }
         
         public override void OnEnter()

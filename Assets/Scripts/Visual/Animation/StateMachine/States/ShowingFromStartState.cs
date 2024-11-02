@@ -5,36 +5,55 @@
         public override AnimationStateType Type => AnimationStateType.ShowingFromStart;
         
         private int lineAnimationsInProgress;
+        private bool previewAnimationLaunched;
         
         public ShowingFromStartState(PreviewAnimation previewAnimation, StarLineAnimationsSet[] starLineAnimSets,
-            IndexContainer indexContainer) : base(previewAnimation, starLineAnimSets, indexContainer)
+            IndexContainer indexContainer, AnimationShowerSettings settings) : base(previewAnimation,
+            starLineAnimSets, indexContainer, settings)
         { }
-        
+
         public override void OnEnter()
         {
+            previewAnimationLaunched = false;
+            
             LaunchLineAnimation();
         }
 
         private void LaunchLineAnimation()
         {
-            var lineAnimations = starLineAnimSets[indexContainer.Value];
-            lineAnimationsInProgress = lineAnimations.AnimationsCount;
+            if (settings.ShowStarLines)
+            {
+                var lineAnimations = starLineAnimSets[indexContainer.Value];
+                lineAnimationsInProgress = lineAnimations.AnimationsCount;
 
-            lineAnimations.ShowLineAnimation(finishedCallback: OnLineSetFinished);
+                lineAnimations.ShowOpacity(true);
+                lineAnimations.ShowLineAnimations(finishedCallback: OnLineSetFinished);
+            }
+            else
+            {
+                OnLineSetFinished();
+            }
         }
 
         private void OnLineSetFinished()
         {
             lineAnimationsInProgress -= 1;
 
-            if (lineAnimationsInProgress != 0)
+            if (lineAnimationsInProgress != 0 && settings.ShowStarLines)
             {
                 return;
             }
             
             if (indexContainer.Value + 1 == starLineAnimSets.Length)
             {
-                previewAnimation.Show(finishedCallback: OnPreviewShown);
+                if (settings.ShowPreview)
+                {
+                    previewAnimation.Show(finishedCallback: OnPreviewShown);
+                }
+                else
+                {
+                    OnPreviewShown();
+                }
             }
             else
             {
@@ -51,6 +70,28 @@
         public override void WantsToHide()
         {
             RaiseChangeState(AnimationStateType.Hiding);
+        }
+
+        public override void ShowLinesSettingChanged(bool value)
+        {
+            if (value)
+            {
+                foreach (var starLineSet in starLineAnimSets)
+                {
+                    starLineSet.ShowOpacity();
+                    starLineSet.ShowLineAnimations(true);
+                }
+            }
+            else
+            {
+                foreach (var starLineSet in starLineAnimSets)
+                {
+                    starLineSet.HideOpacity();
+                    starLineSet.StopLineAnimations();
+                }
+                
+                OnLineSetFinished();
+            }
         }
     }
 }

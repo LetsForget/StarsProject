@@ -16,21 +16,36 @@ namespace StarsProject
         {
             visualiser.Initialise(config);
 
+            UpdateShowPreviewSetting();
+            UpdateShowLinesSetting();
+            
             UpdateStarMagnitude();
             UpdateStarLineWidth();
             
             menu.ShowHideButtonPressed += ShowHideConstellationAnimation;
             
+            menu.ShowPreviewSettingChanged += UpdateShowPreviewSetting;
+            menu.ShowLineSettingChanged += UpdateShowLinesSetting;
             menu.MaximalStarMagnitudeChanged += UpdateStarMagnitude;
             menu.StarMagnitudeMultiplierChanged += UpdateStarMagnitude;
             menu.StarLineWidthChanged += UpdateStarLineWidth;
         }
-        
+
         private void ShowHideConstellationAnimation()
         {
             visualiser.OnShowHideButtonPressed();
         }
-
+        
+        private void UpdateShowPreviewSetting()
+        {
+            visualiser.OnShowPreviewSettingChanged(menu.ShowPreviewSettingsValue);
+        }
+        
+        private void UpdateShowLinesSetting()
+        {
+            visualiser.OnShowLinesSettingChanged(menu.ShowLines);
+        }
+        
         private void UpdateStarMagnitude()
         {
             visualiser.OnStarMagnitudeValuesChanged(menu.MaximalMagnitude, menu.MagnitudeMultiplier);
