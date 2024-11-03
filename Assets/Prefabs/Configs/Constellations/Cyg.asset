@@ -466,3 +466,5 @@ MonoBehaviour:
         <Magnitude>k__BackingField: 6.07999992370605
   <Star>k__BackingField: {fileID: 21300000, guid: bad8b87d02150b5458b007fdbd4bf903, type: 3}
   <Preview>k__BackingField: {fileID: 21300000, guid: 589fede81ecdfa64da61d7c90c1ea883, type: 3}
+  <PreviewAddAngle>k__BackingField: 0
+  <PreviewAddScale>k__BackingField: {x: 1, y: 1, z: 1}

@@ -12,5 +12,7 @@ namespace StarsProject.Visual
         public void SetSprite(Sprite starTex) => Renderer.sprite = starTex;
         public void SetOpacity(float alpha) => Renderer.color = Renderer.color.SetOpacity(alpha);
         public void SetScale(float scale) => Renderer.transform.localScale = Vector3.one * scale;
+        public void SetScale(Vector3 scale) => Renderer.transform.localScale = scale;
+        public void SetRotation(float angle) => Renderer.transform.localRotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 }

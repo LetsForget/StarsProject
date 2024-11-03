@@ -38,10 +38,12 @@ namespace StarsProject.Visual
             return starVisuals;
         }
 
-        public SpriteVisual GeneratePreview(Sprite previewSprite, Transform holder, in ImageInfo info)
+        public SpriteVisual GeneratePreview(Sprite previewSprite, Transform holder, float additionalAngle, Vector3 additionalScale)
         {
             var preview = GameObject.Instantiate(config.SpriteVisual, holder);
             preview.SetSprite(previewSprite);
+            preview.SetScale(additionalScale);
+            preview.SetRotation(additionalAngle);
             
             return preview;
         }

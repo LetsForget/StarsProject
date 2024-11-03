@@ -45,8 +45,7 @@ namespace StarsProject.Visual
             starVisuals = visualGenerator.GenerateStars(starSprite, visualHolder, stars);
             
             var previewSprite = config.Preview;
-            var imageInfo = constellation.ImageInfo;
-            previewVisual = visualGenerator.GeneratePreview(previewSprite, visualHolder, in imageInfo);
+            previewVisual = visualGenerator.GeneratePreview(previewSprite, visualHolder, config.PreviewAddAngle, config.PreviewAddScale);
 
             var lines = constellation.Lines;
             starLineSteps = visualGenerator.GenerateLines(visualHolder, starVisuals, lines);
