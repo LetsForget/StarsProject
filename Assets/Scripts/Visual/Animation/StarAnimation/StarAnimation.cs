@@ -4,17 +4,26 @@ namespace StarsProject.Visual.Animation
 {
     public class StarAnimation
     {
-        private StarVisual visual;
-        private ScaleAnimation scaleAnimation;
+        private ScaleAnimation scaleAnim;
 
         public StarAnimation(StarVisual visual, AnimationConfig config)
         {
-            this.visual = visual;
-            scaleAnimation = new ScaleAnimation(visual.Visual, config);
+            scaleAnim = new ScaleAnimation(visual.Visual, config);
         }
 
-        public void Show() => scaleAnimation.Appear(() => scaleAnimation.ForceDisappear());
+        public void Show()
+        {
+            scaleAnim.PlayForward(OnScaleAnimFinished);
+        }
 
-        public void UpdateSelf() => scaleAnimation.UpdateSelf();
+        private void OnScaleAnimFinished()
+        {
+            scaleAnim.ForceIncomplete();
+        }
+        
+        public void UpdateSelf()
+        {
+            scaleAnim.UpdateSelf();
+        }
     }
 }

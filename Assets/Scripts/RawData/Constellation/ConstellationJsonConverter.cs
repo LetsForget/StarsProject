@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using StarsProject.CelestialCoordinates;
 using UnityEngine;
 using StarsProject.Constellations;
 using StarsProject.Misc;
@@ -33,15 +34,15 @@ namespace StarsProject.RawData.Constellations
             return new Constellation(name, center, imageInfo, stars, lines);
         }
         
-        private static ImageInfo ConvertImageData(ImageData data)
+        private static PreviewData ConvertImageData(ImageData data)
         {
             var center = new CelestialCoordinate(data.ra, data.dec);
-            return new ImageInfo(center, data.scale, data.angle);
+            return new PreviewData(center, data.scale, data.angle);
         }
 
-        private static Dictionary<uint, Star> ConvertStarsArray(StarData[] starDatas)
+        private static Dictionary<uint, StarsProject.Constellations.StarData> ConvertStarsArray(StarData[] starDatas)
         {
-            var stars = new Dictionary<uint, Star>();
+            var stars = new Dictionary<uint, StarsProject.Constellations.StarData>();
             
             for (var i = 0; i < starDatas.Length; i++)
             {
@@ -59,12 +60,12 @@ namespace StarsProject.RawData.Constellations
 
             return stars;
             
-            Star ConvertStar(StarData data)
+            StarsProject.Constellations.StarData ConvertStar(StarData data)
             {
                 var coord = new CelestialCoordinate(data.ra, data.dec);
                 var color = ColorUtils.HexToColor(data.color);
 
-                return new Star(coord, color, data.magnitude);
+                return new StarsProject.Constellations.StarData(coord, color, data.magnitude);
             }
         }
     }

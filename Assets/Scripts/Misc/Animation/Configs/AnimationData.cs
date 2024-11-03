@@ -8,26 +8,27 @@ namespace StarsProject.Animation
     {
         [field: SerializeField] public AnimationCurve Curve { get; private set; }
         [field: SerializeField] public float Duration { get; private set; }
-        [field: SerializeField] public bool UseReversedCurve { get; private set; }
-        
+
         public AnimationCurve ReversedCurve
         {
             get
             {
-                if (_reversedCurve == null || _reversedCurve.keys.Length <= 1)
+                if (_reversedCurve != null && _reversedCurve.keys.Length > 1)
                 {
-                    var sampleCount = 100;
-                    _reversedCurve = new AnimationCurve();
+                    return _reversedCurve;
+                }
+                
+                var sampleCount = 100;
+                _reversedCurve = new AnimationCurve();
                         
-                    var timeStep = (Curve.keys[^1].time - Curve.keys[0].time) / sampleCount;
+                var timeStep = (Curve.keys[^1].time - Curve.keys[0].time) / sampleCount;
                         
-                    for (var i = 0; i <= sampleCount; i++)
-                    {
-                        var time = Curve.keys[0].time + i * timeStep;
-                        var value = Curve.Evaluate(time);
+                for (var i = 0; i <= sampleCount; i++)
+                {
+                    var time = Curve.keys[0].time + i * timeStep;
+                    var value = Curve.Evaluate(time);
                             
-                        _reversedCurve.AddKey(new Keyframe(value, time));
-                    }
+                    _reversedCurve.AddKey(new Keyframe(value, time));
                 }
 
                 return _reversedCurve;

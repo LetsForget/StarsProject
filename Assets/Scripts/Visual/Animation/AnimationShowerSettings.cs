@@ -2,7 +2,8 @@
 {
     public class AnimationShowerSettings
     {
-        public bool ShowPreview { get; set; }
-        public bool ShowStarLines { get; set; }
+        public bool DisplayPreview { get; set; }
+        public bool DisplayStarLines { get; set; }
+        public int StarLineAnimIndex { get; set; }
     }
 }

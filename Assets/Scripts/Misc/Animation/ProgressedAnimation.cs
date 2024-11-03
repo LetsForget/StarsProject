@@ -5,12 +5,12 @@ namespace StarsProject.Animation
 {
     public abstract class ProgressedAnimation
     {
-        protected AnimationConfig config;
-        protected PlaybackState state;
-        
-        protected float time;
         protected float progress;
+        
+        private AnimationConfig config;
+        private PlaybackState state;
 
+        private float time;
         private Action finishedCallback;
         
         protected ProgressedAnimation(AnimationConfig config)
@@ -18,13 +18,13 @@ namespace StarsProject.Animation
             this.config = config;
         }
 
-        public void Appear(Action finishedCallback = null)
+        public void PlayForward(Action finishedCallback = null)
         {
             SetState(PlaybackState.Forward, config.AppearData.Duration, config.AppearData.ReversedCurve);
             this.finishedCallback = finishedCallback;
         } 
 
-        public void ForceAppear()
+        public void ForceComplete()
         {
             var dur = config.AppearData.Duration;
             var prog = config.AppearData.Curve.Evaluate(1);
@@ -32,21 +32,21 @@ namespace StarsProject.Animation
             ForceFinishWithValues(dur, prog);
         }
 
-        public void Disappear(Action finishedCallback = null)
+        public void Stop()
+        {
+            state = PlaybackState.NotActive;
+        }
+        
+        public void PlayBackward(Action finishedCallback = null)
         {
             SetState(PlaybackState.Backward, config.DisappearData.Duration, config.DisappearData.ReversedCurve);
             this.finishedCallback = finishedCallback;
         } 
 
-        public void ForceDisappear()
+        public void ForceIncomplete()
         {
             var prog = config.DisappearData.Curve.Evaluate(0);
             ForceFinishWithValues(0, prog);
-        }
-
-        public void Stop()
-        {
-            state = PlaybackState.NotActive;
         }
         
         public void UpdateSelf()

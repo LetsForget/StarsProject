@@ -5,8 +5,8 @@ using UnityEngine;
 namespace StarsProject.Constellations
 {
     [Serializable]
-    public class LineQueuePart
+    public class StarLineIndexesSet
     {
-        [field: SerializeField] public List<LineInfo> Lines { get; private set; } = new();
+        [field: SerializeField] public List<StarLineIndexes> Lines { get; private set; } = new();
     }
 }

@@ -38,17 +38,17 @@ namespace StarsProject
         
         private void UpdateShowPreviewSetting()
         {
-            visualiser.OnShowPreviewSettingChanged(menu.ShowPreviewSettingsValue);
+            visualiser.OnDisplayPreviewChanged(menu.ShowPreviewSettingsValue);
         }
         
         private void UpdateShowLinesSetting()
         {
-            visualiser.OnShowLinesSettingChanged(menu.ShowLines);
+            visualiser.OnDisplayLinesChanged(menu.ShowLines);
         }
         
         private void UpdateStarMagnitude()
         {
-            visualiser.OnStarMagnitudeValuesChanged(menu.MaximalMagnitude, menu.MagnitudeMultiplier);
+            visualiser.OnStarSizesChanged(menu.MaximalMagnitude, menu.MagnitudeMultiplier);
         }
 
         private void UpdateStarLineWidth()

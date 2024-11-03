@@ -1,9 +1,7 @@
 ﻿using System;
-using StarsProject.Constellations;
-using StarsProject.Visual;
 using UnityEngine;
 
-namespace StarsProject.Misc
+namespace StarsProject.CelestialCoordinates
 {
     public static class CelestialCoordinateConverter
     {

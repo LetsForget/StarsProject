@@ -1,20 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using StarsProject.CelestialCoordinates;
 using StarsProject.Constellations;
-using StarsProject.Misc;
 
 namespace StarsProject.RawData.Constellations
 {
     public static class LinesPathGenerator
     {
-        public static LineQueuePart[] GenerateLinePaths(LineData[] lineDatas, Dictionary<uint, Star> stars,
+        public static StarLineIndexesSet[] GenerateLinePaths(StarLineData[] lineDatas, Dictionary<uint, StarsProject.Constellations.StarData> stars,
             CelestialCoordinate center)
         {
             var tree = GenerateTree(lineDatas);
             return GeneratePath(tree, stars, center);
         }
 
-        private static List<PointTreePart> GenerateTree(LineData[] lineDatas)
+        private static List<PointTreePart> GenerateTree(StarLineData[] lineDatas)
         {
             var rawTreeParts = new Dictionary<uint, List<uint>>();
             var treeParts = new Dictionary<uint, PointTreePart>();
@@ -54,12 +54,12 @@ namespace StarsProject.RawData.Constellations
             return treeParts.Values.ToList();
         }
 
-        private static LineQueuePart[] GeneratePath(List<PointTreePart> parts, Dictionary<uint, Star> stars,
+        private static StarLineIndexesSet[] GeneratePath(List<PointTreePart> parts, Dictionary<uint, StarsProject.Constellations.StarData> stars,
             CelestialCoordinate center)
         {
             var startPart = parts.OrderBy(p => stars[p.Index].Coordinate.Distance(center)).First();
 
-            var linePaths = new Dictionary<int, LineQueuePart>();
+            var linePaths = new Dictionary<int, StarLineIndexesSet>();
             var usedParts = new HashSet<PointTreePart>();
 
             var currentStepParts = new List<PointTreePart>();
@@ -92,7 +92,7 @@ namespace StarsProject.RawData.Constellations
                             .ToArray();
         }
 
-        private static bool FillPath(Dictionary<int, LineQueuePart> linePaths, HashSet<PointTreePart> usedParts, int depth, PointTreePart startPart)
+        private static bool FillPath(Dictionary<int, StarLineIndexesSet> linePaths, HashSet<PointTreePart> usedParts, int depth, PointTreePart startPart)
         {
             if (usedParts.Contains(startPart))
             {
@@ -124,11 +124,11 @@ namespace StarsProject.RawData.Constellations
 
                     if (!linePaths.TryGetValue(depth, out var oneTimeLines))
                     {
-                        oneTimeLines = new LineQueuePart();
+                        oneTimeLines = new StarLineIndexesSet();
                         linePaths.Add(depth, oneTimeLines);
                     }
 
-                    oneTimeLines.Lines.Add(new LineInfo(startPart.Index, nextPart.Index));
+                    oneTimeLines.Lines.Add(new StarLineIndexes(startPart.Index, nextPart.Index));
                     result = true;
                 }
             }

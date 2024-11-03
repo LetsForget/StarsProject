@@ -4,31 +4,32 @@
     {
         public override AnimationStateType Type => AnimationStateType.Hided;
 
-        public HidedState(PreviewAnimation previewAnimation, StarLineAnimationsSet[] starLineAnimSets,
-            IndexContainer indexContainer, AnimationShowerSettings settings) : base(previewAnimation,
-            starLineAnimSets, indexContainer, settings)
+        public HidedState(AnimationShowerSettings settings, PreviewAnimation previewAnim,
+            StarLineAnimationsSet[] starLineAnims) : base(settings, previewAnim, starLineAnims)
         { }
 
         public override void OnEnter()
         {
-            previewAnimation.Hide(true);
+            previewAnim.Disappear(true);
             
-            foreach (var lineSet in starLineAnimSets)
+            foreach (var lineSet in starLineAnims)
             {
-                lineSet.HideOpacity(true);
+                lineSet.Disappear(true);
             }
             
-            foreach (var lineSet in starLineAnimSets)
+            foreach (var lineSet in starLineAnims)
             {
-                lineSet.HideLines(true);
+                lineSet.ResetLineAnimations();
             }
 
-            indexContainer.Value = 0;
+            settings.StarLineAnimIndex = 0;
         }
 
         public override void WantsToShow()
         {
             RaiseChangeState(AnimationStateType.ShowingFromStart);
         }
+
+        
     }
 }

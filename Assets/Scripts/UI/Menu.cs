@@ -29,9 +29,9 @@ namespace StarsProject.UI
         public bool ShowPreviewSettingsValue => previewToggle.isOn;
         public bool ShowLines => lineToggle.isOn;
 
-        public float MaximalMagnitude => float.Parse(maximalStarSizeField.text,NumberStyles.Float, CultureInfo.InvariantCulture);
-        public float MagnitudeMultiplier => float.Parse(starMultiplierField.text, NumberStyles.Float, CultureInfo.InvariantCulture);
-        public float StarLineWidth => float.Parse(lineWidthField.text, NumberStyles.Float, CultureInfo.InvariantCulture);
+        public float MaximalMagnitude => GetValue(maximalStarSizeField.text, float.MaxValue);
+        public float MagnitudeMultiplier => GetValue(starMultiplierField.text, 1f);
+        public float StarLineWidth => GetValue(lineWidthField.text, 1f);
         
         private void Start()
         {
@@ -43,6 +43,16 @@ namespace StarsProject.UI
             lineWidthField.onValueChanged.AddListener(_ => StarLineWidthChanged?.Invoke());
             
             showHideButton.onClick.AddListener(() => ShowHideButtonPressed?.Invoke());
+        }
+
+        private float GetValue(string text, float defaultValue)
+        {
+            if (text.Length == 0 || !float.TryParse(text, NumberStyles.Float, CultureInfo.GetCultureInfo("es-ES"), out var res))
+            {
+                return defaultValue;
+            }
+
+            return res;
         }
         
         private void OnDestroy()

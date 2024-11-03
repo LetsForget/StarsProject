@@ -4,28 +4,22 @@
     {
         public override AnimationStateType Type => AnimationStateType.Shown;
 
-        public ShownState(PreviewAnimation previewAnimation, StarLineAnimationsSet[] starLineAnimSets,
-            IndexContainer indexContainer, AnimationShowerSettings settings) : base(previewAnimation,
-            starLineAnimSets, indexContainer, settings)
+        public ShownState(AnimationShowerSettings settings, PreviewAnimation previewAnim,
+            StarLineAnimationsSet[] starLineAnims) : base(settings, previewAnim, starLineAnims)
         { }
 
         public override void OnEnter()
         {
-            if (settings.ShowPreview)
+            if (settings.DisplayStarLines)
             {
-                previewAnimation.Show(true);
-            }
-
-            if (settings.ShowStarLines)
-            {
-                foreach (var lineSet in starLineAnimSets)
+                foreach (var lineSet in starLineAnims)
                 {
-                    lineSet.ShowOpacity(true);
-                    lineSet.ShowLineAnimations(true);
+                    lineSet.Appear(true);
+                    lineSet.RunLineAnimations(true);
                 }
             }
 
-            indexContainer.Value = starLineAnimSets.Length - 1;
+            settings.StarLineAnimIndex = starLineAnims.Length - 1;
         }
         
         public override void WantsToHide()
@@ -33,33 +27,33 @@
             RaiseChangeState(AnimationStateType.Hiding);
         }
 
-        public override void ShowPreviewSettingChanged(bool value)
+        public override void SetPreviewDisplaying(bool value)
         {
             if (value)
             {
-                previewAnimation.Show();
+                previewAnim.Appear();
             }
             else
             {
-                previewAnimation.Hide();
+                previewAnim.Disappear();
             }
         }
 
-        public override void ShowLinesSettingChanged(bool value)
+        public override void SetStarLinesDisplaying(bool value)
         {
             if (value)
             {
-                foreach (var lineSet in starLineAnimSets)
+                foreach (var lineSet in starLineAnims)
                 {
-                    lineSet.ShowLineAnimations(true);
-                    lineSet.ShowOpacity();
+                    lineSet.RunLineAnimations(true);
+                    lineSet.Appear();
                 }
             }
             else
             {
-                foreach (var lineSet in starLineAnimSets)
+                foreach (var lineSet in starLineAnims)
                 {
-                    lineSet.HideOpacity();
+                    lineSet.Disappear();
                 }
             }
         }

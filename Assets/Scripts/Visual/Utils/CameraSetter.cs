@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using StarsProject.CelestialCoordinates;
 using StarsProject.Constellations;
-using StarsProject.Misc;
 using UnityEngine;
 
 
@@ -10,7 +10,7 @@ namespace StarsProject.Visual.Utils
 {
     public class CameraSetter
     {
-        public void SetCamera(Camera camera, Vector2 size, float offset, Dictionary<uint, Star> stars, CelestialCoordinate center)
+        public void SetCamera(Camera camera, Vector2 size, float offset, Dictionary<uint, StarData> stars)
         {
             Vector3 camPos = size / 2;
             camPos.z = -10;

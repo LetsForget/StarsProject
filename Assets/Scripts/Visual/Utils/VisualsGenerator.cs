@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using StarsProject.CelestialCoordinates;
 using StarsProject.Constellations;
-using StarsProject.Misc;
 using StarsProject.Visual.Animation;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -10,14 +9,14 @@ namespace StarsProject.Visual
 {
     public class VisualsGenerator
     {
-        private VisualConfig config;
+        private VisualPrefabsConfig config;
 
-        public VisualsGenerator(VisualConfig config)
+        public VisualsGenerator(VisualPrefabsConfig config)
         {
             this.config = config;
         }
 
-        public Dictionary<uint, StarVisual> GenerateStars(Sprite starTex, Transform holder, Dictionary<uint, Star> stars)
+        public Dictionary<uint, StarVisual> GenerateStars(Sprite starTex, Transform holder, Dictionary<uint, StarData> stars)
         {
             var starVisuals = new Dictionary<uint,StarVisual>();
 
@@ -48,7 +47,7 @@ namespace StarsProject.Visual
             return preview;
         }
 
-        public StarLineVisualSet[] GenerateLines(Transform holder, Dictionary<uint, StarVisual> stars, LineQueuePart[] lineQueueParts)
+        public StarLineVisualSet[] GenerateLines(Transform holder, Dictionary<uint, StarVisual> stars, StarLineIndexesSet[] lineQueueParts)
         {
             var starLineSets = new StarLineVisualSet[lineQueueParts.Length];
 

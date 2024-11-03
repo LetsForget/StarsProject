@@ -1,62 +1,62 @@
 ﻿using System;
 using StarsProject.Animation;
+using StarsProject.CelestialCoordinates;
 using StarsProject.Constellations;
-using StarsProject.Misc;
 using UnityEngine;
 
 namespace StarsProject.Visual.Animation
 {
     public class PreviewAnimation
     {
-        private ImageInfo imageInfo;
+        private PreviewData previewData;
         private SpriteVisual visual;
         
         private OpacityAnimation animation;
 
-        public PreviewAnimation(ImageInfo imageInfo, SpriteVisual visual, AnimationConfig config)
+        public PreviewAnimation(PreviewData previewData, SpriteVisual visual, AnimationConfig config)
         {
-            this.imageInfo = imageInfo;
+            this.previewData = previewData;
             this.visual = visual;
             
             animation = new OpacityAnimation(visual, config);
             
             RefreshPosition();
         }
-
-        public void RefreshPosition()
+        
+        public void Appear(bool force = false, Action finishedCallback = null)
         {
-            visual.transform.localScale = CelestialCoordinateConverter.GetScale(imageInfo.scale);
-            visual.transform.position = imageInfo.coordinate.ToVector3();
-            visual.transform.rotation = Quaternion.AngleAxis(imageInfo.angle, -Vector3.forward);
-        }
+            if (force)
+            {
+                animation.ForceComplete();
+                finishedCallback?.Invoke();
+                return;
+            }
 
+            animation.PlayForward(finishedCallback);
+        }
+        
         public void UpdateSelf()
         {
             animation.UpdateSelf();
         }
         
-        public void Show(bool force = false, Action finishedCallback = null)
+        public void Disappear(bool force = false, Action finishedCallback = null)
         {
             if (force)
             {
-                animation.ForceAppear();
+                animation.ForceIncomplete();
                 finishedCallback?.Invoke();
                 return;
             }
 
-            animation.Appear(finishedCallback);
+            animation.PlayBackward(finishedCallback);
         }
         
-        public void Hide(bool force = false, Action finishedCallback = null)
+        public void RefreshPosition()
         {
-            if (force)
-            {
-                animation.ForceDisappear();
-                finishedCallback?.Invoke();
-                return;
-            }
-
-            animation.Disappear(finishedCallback);
+            visual.transform.localScale = CelestialCoordinateConverter.GetScale(previewData.Scale);
+            visual.transform.position = previewData.Coordinate.ToVector3();
+            visual.transform.rotation = Quaternion.AngleAxis(previewData.Angle, -Vector3.forward);
         }
     }
 }

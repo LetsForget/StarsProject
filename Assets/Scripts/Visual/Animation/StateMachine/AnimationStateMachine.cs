@@ -6,17 +6,14 @@ namespace StarsProject.Visual.Animation
 {
     public sealed class AnimationStateMachine : StateMachine<AnimationStateType, AnimationState>
     {
-        private PreviewAnimation previewAnimation;
-        private StarLineAnimationsSet[] starLineAnimationsSets;
-        private IndexContainer setIndexContainer;
+        private PreviewAnimation previewAnim;
+        private StarLineAnimationsSet[] starLineAnims;
         private AnimationShowerSettings settings;
         
-        public AnimationStateMachine(PreviewAnimation previewAnimation, StarLineAnimationsSet[] starLineAnimationsSets,
-            IndexContainer setIndexContainer, AnimationShowerSettings settings)
+        public AnimationStateMachine(PreviewAnimation previewAnim, StarLineAnimationsSet[] starLineAnims, AnimationShowerSettings settings)
         {
-            this.previewAnimation = previewAnimation;
-            this.starLineAnimationsSets = starLineAnimationsSets;
-            this.setIndexContainer = setIndexContainer;
+            this.previewAnim = previewAnim;
+            this.starLineAnims = starLineAnims;
             this.settings = settings;
             
             InitializeStates();
@@ -28,26 +25,11 @@ namespace StarsProject.Visual.Animation
         {
             states = new Dictionary<AnimationStateType, AnimationState>
             {
-                {
-                    AnimationStateType.Hided,
-                    new HidedState(previewAnimation, starLineAnimationsSets, setIndexContainer, settings)
-                },
-                {
-                    AnimationStateType.Hiding,
-                    new HidingState(previewAnimation, starLineAnimationsSets, setIndexContainer, settings)
-                },
-                {
-                    AnimationStateType.ShowingFromStart,
-                    new ShowingFromStartState(previewAnimation, starLineAnimationsSets, setIndexContainer, settings)
-                },
-                {
-                    AnimationStateType.ShowingFromHiding,
-                    new ShowingFromHidingState(previewAnimation, starLineAnimationsSets, setIndexContainer, settings)
-                },
-                {
-                    AnimationStateType.Shown,
-                    new ShownState(previewAnimation, starLineAnimationsSets, setIndexContainer, settings)
-                }
+                { AnimationStateType.Hided, new HidedState(settings, previewAnim, starLineAnims) },
+                { AnimationStateType.Hiding, new HidingState(settings,previewAnim, starLineAnims) },
+                { AnimationStateType.ShowingFromStart, new ShowingFromStartState(settings,previewAnim, starLineAnims) },
+                { AnimationStateType.ShowingFromHiding, new ShowingFromHidingState(settings,previewAnim, starLineAnims) },
+                { AnimationStateType.Shown, new ShownState(settings,previewAnim, starLineAnims) }
             };
 
             base.InitializeStates();

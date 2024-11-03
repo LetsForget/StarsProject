@@ -5,22 +5,21 @@
         public override AnimationStateType Type => AnimationStateType.Hiding;
         
         private int animCount;
-        
-        public HidingState(PreviewAnimation previewAnimation, StarLineAnimationsSet[] starLineAnimSets,
-            IndexContainer indexContainer, AnimationShowerSettings settings) : base(previewAnimation, 
-            starLineAnimSets, indexContainer, settings)
+
+        public HidingState(AnimationShowerSettings settings, PreviewAnimation previewAnim,
+            StarLineAnimationsSet[] starLineAnims) : base(settings, previewAnim, starLineAnims)
         { }
-        
+
         public override void OnEnter()
         {
             animCount = 1;
-            previewAnimation.Hide(finishedCallback: OnAnimationFinished);
+            previewAnim.Disappear(finishedCallback: OnAnimationFinished);
            
-            for (var i = 0; i < starLineAnimSets.Length; i++)
+            for (var i = 0; i < starLineAnims.Length; i++)
             {
-                animCount += starLineAnimSets[i].AnimationsCount;
-                starLineAnimSets[i].HideOpacity(finishedCallback: OnAnimationFinished);
-                starLineAnimSets[i].StopLineAnimations();
+                animCount += starLineAnims[i].AnimationsCount;
+                starLineAnims[i].Disappear(finishedCallback: OnAnimationFinished);
+                starLineAnims[i].StopLineAnimations();
             }
         }
 

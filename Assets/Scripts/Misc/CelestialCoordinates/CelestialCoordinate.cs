@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace StarsProject.Constellations
+namespace StarsProject.CelestialCoordinates
 {
     [Serializable]
     public struct CelestialCoordinate
@@ -13,7 +13,5 @@ namespace StarsProject.Constellations
             this.ra = ra;
             this.dec = dec;
         }
-
-        public static CelestialCoordinate Zero => new(0, 0);
     }
 }

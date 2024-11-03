@@ -1,7 +1,6 @@
-﻿using StarsProject.Constellations;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace StarsProject.Visual
+namespace StarsProject.CelestialCoordinates
 {
     public class CelestialCoordinatesHelper
     {

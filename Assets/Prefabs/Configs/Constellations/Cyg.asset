@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Constellation>k__BackingField:
     <Name>k__BackingField: Cyg
-    <ImageInfo>k__BackingField:
-      coordinate:
+    <PreviewData>k__BackingField:
+      <Coordinate>k__BackingField:
         ra: 20.61
         dec: 43.49
-      scale: 2.45
-      angle: 0
+      <Scale>k__BackingField: 2.45
+      <Angle>k__BackingField: 0
     <Coordinate>k__BackingField:
       ra: 20.31
       dec: 40.3
@@ -466,5 +466,5 @@ MonoBehaviour:
         <Magnitude>k__BackingField: 6.07999992370605
   <Star>k__BackingField: {fileID: 21300000, guid: bad8b87d02150b5458b007fdbd4bf903, type: 3}
   <Preview>k__BackingField: {fileID: 21300000, guid: 589fede81ecdfa64da61d7c90c1ea883, type: 3}
-  <PreviewAddAngle>k__BackingField: 0
+  <PreviewAddAngle>k__BackingField: -90
   <PreviewAddScale>k__BackingField: {x: 1, y: 1, z: 1}

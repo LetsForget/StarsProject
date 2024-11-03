@@ -3,7 +3,7 @@
 namespace StarsProject.RawData.Constellations
 {
     [Serializable]
-    public struct LineData
+    public struct StarLineData
     {
         public uint from;
         public uint to;

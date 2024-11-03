@@ -4,25 +4,24 @@ namespace StarsProject.Visual.Animation.States
 {
     public abstract class AnimationState : State<AnimationStateType>
     {
-        protected PreviewAnimation previewAnimation;
-        protected StarLineAnimationsSet[] starLineAnimSets;
-        protected IndexContainer indexContainer;
         protected AnimationShowerSettings settings;
+        
+        protected PreviewAnimation previewAnim;
+        protected StarLineAnimationsSet[] starLineAnims;
 
-        protected AnimationState(PreviewAnimation previewAnimation, StarLineAnimationsSet[] starLineAnimSets,
-            IndexContainer indexContainer, AnimationShowerSettings settings)
+        protected AnimationState(AnimationShowerSettings settings, PreviewAnimation previewAnim, StarLineAnimationsSet[] starLineAnims)
         {
-            this.previewAnimation = previewAnimation;
-            this.starLineAnimSets = starLineAnimSets;
-            this.indexContainer = indexContainer;
             this.settings = settings;
+            
+            this.previewAnim = previewAnim;
+            this.starLineAnims = starLineAnims;
         }
 
         public override void Update()
         {
-            previewAnimation.UpdateSelf();
+            previewAnim.UpdateSelf();
             
-            foreach (var lineSet in starLineAnimSets)
+            foreach (var lineSet in starLineAnims)
             {
                 lineSet.UpdateSelf();
             }
@@ -32,8 +31,8 @@ namespace StarsProject.Visual.Animation.States
         
         public virtual void WantsToHide() { }
 
-        public virtual void ShowPreviewSettingChanged(bool value) { }
+        public virtual void SetPreviewDisplaying(bool value) { }
 
-        public virtual void ShowLinesSettingChanged(bool value) { }
+        public virtual void SetStarLinesDisplaying(bool value) { }
     }
 }

@@ -3,16 +3,16 @@
     public class ShowingFromHidingState : AnimationState
     {
         public override AnimationStateType Type => AnimationStateType.ShowingFromHiding;
-  
-        public ShowingFromHidingState(PreviewAnimation previewAnimation, StarLineAnimationsSet[] starLineAnimSets,
-            IndexContainer indexContainer, AnimationShowerSettings settings) : base(previewAnimation, starLineAnimSets, indexContainer, settings)
+
+        public ShowingFromHidingState(AnimationShowerSettings settings, PreviewAnimation previewAnim,
+            StarLineAnimationsSet[] starLineAnims) : base(settings, previewAnim, starLineAnims)
         { }
 
         public override void OnEnter()
         {
-            for (var i = 0; i <= indexContainer.Value; i++)
+            for (var i = 0; i <= settings.StarLineAnimIndex; i++)
             {
-                starLineAnimSets[i].ShowOpacity();
+                starLineAnims[i].Appear();
             }
             
             RaiseChangeState(AnimationStateType.ShowingFromStart);

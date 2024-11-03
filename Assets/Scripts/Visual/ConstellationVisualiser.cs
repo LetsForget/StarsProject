@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using StarsProject.CelestialCoordinates;
 using StarsProject.Constellations;
 using StarsProject.Visual.Animation;
 using StarsProject.Visual.Utils;
@@ -11,7 +12,7 @@ namespace StarsProject.Visual
         [SerializeField] private Camera camera;
         [SerializeField] private Transform visualHolder;
      
-        [SerializeField] private VisualConfig visualConfig;
+        [SerializeField] private VisualPrefabsConfig visualConfig;
         [SerializeField] private ConstellationAnimationConfig animationConfig;
         
         [SerializeField] private Vector2 size;
@@ -36,10 +37,9 @@ namespace StarsProject.Visual
             CelestialCoordinatesHelper.Size = size;
             
             var constellation = config.Constellation;
-            var stars = constellation.Stars;
-            var center = constellation.Coordinate;
             
-            cameraSetter.SetCamera(camera, size, visualConfig.BorderOffset, stars, center);
+            var stars = constellation.Stars;
+            cameraSetter.SetCamera(camera, size, visualConfig.BorderOffset, stars);
             
             var starSprite = config.Star;
             starVisuals = visualGenerator.GenerateStars(starSprite, visualHolder, stars);
@@ -50,7 +50,7 @@ namespace StarsProject.Visual
             var lines = constellation.Lines;
             starLineSteps = visualGenerator.GenerateLines(visualHolder, starVisuals, lines);
             
-            animationShower = new AnimationShower(animationConfig, config.Constellation.ImageInfo, previewVisual, starLineSteps);
+            animationShower = new AnimationShower(animationConfig, config.Constellation.PreviewData, previewVisual, starLineSteps);
         }
 
         private void Update()
@@ -63,7 +63,7 @@ namespace StarsProject.Visual
             animationShower.OnShowHideButtonPressed();
         } 
 
-        public void OnStarMagnitudeValuesChanged(float maxSize, float multiplier)
+        public void OnStarSizesChanged(float maxSize, float multiplier)
         {
             foreach (var starAnim in starVisuals.Values)
             {
@@ -82,14 +82,14 @@ namespace StarsProject.Visual
             }
         }
 
-        public void OnShowPreviewSettingChanged(bool value)
+        public void OnDisplayPreviewChanged(bool value)
         {
-            animationShower.OnShowPreviewSettingChanged(value);
+            animationShower.OnDisplayPreviewChanged(value);
         }
         
-        public void OnShowLinesSettingChanged(bool value)
+        public void OnDisplayLinesChanged(bool value)
         {
-            animationShower.OnShowLinesSettingChanged(value);
+            animationShower.OnDisplayLinesChanged(value);
         }
     }
 }

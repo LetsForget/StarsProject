@@ -1,5 +1,5 @@
-﻿using StarsProject.Constellations;
-using StarsProject.Misc;
+﻿using StarsProject.CelestialCoordinates;
+using StarsProject.Constellations;
 using UnityEngine;
 
 namespace StarsProject.Visual.Animation
@@ -7,9 +7,9 @@ namespace StarsProject.Visual.Animation
     public class StarVisual
     {
         public SpriteVisual Visual { get; private set; }
-        public Star Star { get; private set; }
+        public StarData Star { get; private set; }
         
-        public StarVisual(SpriteVisual visual, Star star)
+        public StarVisual(SpriteVisual visual, StarData star)
         {
             Visual = visual;
             Star = star;

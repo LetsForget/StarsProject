@@ -4,21 +4,20 @@
     {
         public override AnimationStateType Type => AnimationStateType.ShowingFromStart;
         
-        private int lineAnimationsInProgress;
-        private bool previewAnimationLaunched;
-        
-        public ShowingFromStartState(PreviewAnimation previewAnimation, StarLineAnimationsSet[] starLineAnimSets,
-            IndexContainer indexContainer, AnimationShowerSettings settings) : base(previewAnimation,
-            starLineAnimSets, indexContainer, settings)
+        private int lineAnimsInProgress;
+        private bool lineAnimsLaunched;
+
+        public ShowingFromStartState(AnimationShowerSettings settings, PreviewAnimation previewAnim,
+            StarLineAnimationsSet[] starLineAnims) : base(settings, previewAnim, starLineAnims)
         { }
 
         public override void OnEnter()
         {
-            previewAnimationLaunched = false;
+            lineAnimsLaunched = false;
             
-            if (settings.ShowPreview)
+            if (settings.DisplayPreview)
             {
-                previewAnimation.Show(finishedCallback: OnPreviewShown);
+                previewAnim.Appear(finishedCallback: OnPreviewShown);
             }
             else
             {
@@ -34,13 +33,15 @@
 
         private void LaunchLineAnimation()
         {
-            if (settings.ShowStarLines)
+            lineAnimsLaunched = true;
+            
+            if (settings.DisplayStarLines)
             {
-                var lineAnimations = starLineAnimSets[indexContainer.Value];
-                lineAnimationsInProgress = lineAnimations.AnimationsCount;
+                var lineAnimations = starLineAnims[settings.StarLineAnimIndex];
+                lineAnimsInProgress = lineAnimations.AnimationsCount;
 
-                lineAnimations.ShowOpacity(true);
-                lineAnimations.ShowLineAnimations(finishedCallback: OnLineSetFinished);
+                lineAnimations.Appear(true);
+                lineAnimations.RunLineAnimations(finishedCallback: OnLineSetFinished);
             }
             else
             {
@@ -50,22 +51,22 @@
 
         private void OnLineSetFinished()
         {
-            lineAnimationsInProgress -= 1;
+            lineAnimsInProgress -= 1;
 
-            if (lineAnimationsInProgress != 0 && settings.ShowStarLines)
+            if (lineAnimsInProgress != 0 && settings.DisplayStarLines)
             {
                 return;
             }
             
-            starLineAnimSets[indexContainer.Value].ShowToStarAnimation();
+            starLineAnims[settings.StarLineAnimIndex].RunStarAnimations();
             
-            if (indexContainer.Value + 1 == starLineAnimSets.Length)
+            if (settings.StarLineAnimIndex + 1 == starLineAnims.Length)
             {
                 OnLineAnimationFinished();
             }
             else
             {
-                indexContainer.Value += 1;
+                settings.StarLineAnimIndex += 1;
                 LaunchLineAnimation();
             }
         }
@@ -80,25 +81,41 @@
             RaiseChangeState(AnimationStateType.Hiding);
         }
 
-        public override void ShowLinesSettingChanged(bool value)
+        public override void SetStarLinesDisplaying(bool value)
         {
             if (value)
             {
-                foreach (var starLineSet in starLineAnimSets)
+                foreach (var starLineSet in starLineAnims)
                 {
-                    starLineSet.ShowOpacity();
-                    starLineSet.ShowLineAnimations(true);
+                    starLineSet.Appear();
+                    starLineSet.RunLineAnimations(true);
                 }
             }
             else
             {
-                foreach (var starLineSet in starLineAnimSets)
+                foreach (var starLineSet in starLineAnims)
                 {
-                    starLineSet.HideOpacity();
+                    starLineSet.Disappear();
                     starLineSet.StopLineAnimations();
                 }
                 
                 OnLineAnimationFinished();
+            }
+        }
+
+        public override void SetPreviewDisplaying(bool value)
+        {
+            if (value)
+            {
+                previewAnim.Appear();
+                return;
+            }
+            
+            previewAnim.Disappear();
+            
+            if (!lineAnimsLaunched)
+            {
+                LaunchLineAnimation();
             }
         }
     }

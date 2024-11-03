@@ -11,7 +11,7 @@ namespace StarsProject.RawData.Constellations
         public double dec;
         
         public ImageData image;
-        public LineData[] pairs;
+        public StarLineData[] pairs;
         public StarData[] stars;
     }
 }
