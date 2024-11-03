@@ -17,7 +17,7 @@ namespace StarsProject.Animation
                 if (_reversedCurve == null || _reversedCurve.keys.Length <= 1)
                 {
                     var sampleCount = 100;
-                    var _reversedCurve = new AnimationCurve();
+                    _reversedCurve = new AnimationCurve();
                         
                     var timeStep = (Curve.keys[^1].time - Curve.keys[0].time) / sampleCount;
                         

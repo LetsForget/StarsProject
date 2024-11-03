@@ -30,30 +30,28 @@ MonoBehaviour:
       - from: 4425
         to: 3870
     - <Lines>k__BackingField:
+      - from: 3870
+        to: 5422
       - from: 5435
         to: 3085
       - from: 5435
         to: 2905
-      - from: 3870
-        to: 5422
+      - from: 5435
+        to: 9617
     - <Lines>k__BackingField:
+      - from: 5422
+        to: 7592
       - from: 3085
         to: 675
       - from: 3085
         to: 3024
-      - from: 2905
-        to: 3085
+      - from: 3085
+        to: 2905
       - from: 2905
         to: 116265
-      - from: 5422
-        to: 7592
     - <Lines>k__BackingField:
       - from: 3024
         to: 3684
-      - from: 3085
-        to: 675
-      - from: 3085
-        to: 3024
       - from: 116265
         to: 116439
       - from: 116265
@@ -61,13 +59,8 @@ MonoBehaviour:
     - <Lines>k__BackingField:
       - from: 3684
         to: 4452
-      - from: 3024
-        to: 3684
       - from: 116439
         to: 116218
-    - <Lines>k__BackingField:
-      - from: 3684
-        to: 4452
     stars:
       keys: a3020000460300003b04000052050000bd050000d9050000910600002c090000590b0000d00b00000d0c0000970c0000640e00001e0f0000b510000049110000641100001c130000b91400002e1500003b15000069150000a0150000fc180000631900008e1a0000481b00004a1d0000a81d0000161e00007a1e00005a2200002923000091250000e1260000a8270000ac2700004b280000282a0000a52a0000b82b0000152c0000ad2c0000d6ba010014bb010097bb0100afbc0100b9bc010094bd010020be0100e4bf01000fc0010065c001008cc00100e4c00100bec20100ffc3010014c50100fac5010029c6010077c60100d7c6010076c80100c8cc0100
       values:

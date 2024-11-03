@@ -60,31 +60,77 @@ namespace StarsProject.RawData.Constellations
             var startPart = parts.OrderBy(p => stars[p.Index].Coordinate.Distance(center)).First();
 
             var linePaths = new Dictionary<int, LineQueuePart>();
+            var usedParts = new HashSet<PointTreePart>();
+
+            var currentStepParts = new List<PointTreePart>();
+            currentStepParts.Add(startPart);
             
-            FillPath(linePaths, 0, startPart, true);
-            FillPath(linePaths, 0, startPart, false);
+            var depth = 0;
+     
+            while (currentStepParts.Count != 0)
+            {
+                var newParts = new List<PointTreePart>();
+                
+                foreach (var stepPart in currentStepParts)
+                {
+                    if (!FillPath(linePaths, usedParts, depth, stepPart))
+                    {
+                        continue;
+                    }
+                    
+                    newParts.AddRange(stepPart.Parents);
+                    newParts.AddRange(stepPart.Children);
+                }
+
+                currentStepParts = newParts;
+                
+                depth += 1;
+            }
 
             return linePaths.OrderBy(line => line.Key)
                             .Select(pair => pair.Value)
                             .ToArray();
         }
 
-        private static void FillPath(Dictionary<int, LineQueuePart> linePaths, int depth, PointTreePart startPart,
-            bool direction)
+        private static bool FillPath(Dictionary<int, LineQueuePart> linePaths, HashSet<PointTreePart> usedParts, int depth, PointTreePart startPart)
         {
-            var parts = direction ? startPart.Children : startPart.Parents;
-
-            foreach (var part in parts)
+            if (usedParts.Contains(startPart))
             {
-                FillPath(linePaths, depth + 1, part, direction);
-                
-                if (!linePaths.TryGetValue(depth, out var oneTimeLines))
-                {
-                    oneTimeLines = new LineQueuePart();
-                    linePaths.Add(depth, oneTimeLines);
-                }
+                return false;
+            }
 
-                oneTimeLines.Lines.Add(new LineInfo(startPart.Index, part.Index));
+            var result = false;
+            usedParts.Add(startPart);
+            
+            HandleParts(startPart.Children);
+            HandleParts(startPart.Parents);
+
+            return result;
+            
+            void HandleParts(List<PointTreePart> parts)
+            {
+                foreach (var nextPart in  parts)
+                {
+                    if (linePaths.SelectMany(x => x.Value.Lines).
+                        Any(l =>
+                        {
+                            var firstCond = l.from == startPart.Index && l.to == nextPart.Index;
+                            var secondCond = l.from == nextPart.Index && l.to == startPart.Index;
+                            return firstCond || secondCond;
+                        }))
+                    {
+                        continue;
+                    }
+
+                    if (!linePaths.TryGetValue(depth, out var oneTimeLines))
+                    {
+                        oneTimeLines = new LineQueuePart();
+                        linePaths.Add(depth, oneTimeLines);
+                    }
+
+                    oneTimeLines.Lines.Add(new LineInfo(startPart.Index, nextPart.Index));
+                    result = true;
+                }
             }
         }
     }

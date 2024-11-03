@@ -1,0 +1,468 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e74a8cfdb4e7466c9e6b916241229f28, type: 3}
+  m_Name: Cyg
+  m_EditorClassIdentifier: 
+  <Constellation>k__BackingField:
+    <Name>k__BackingField: Cyg
+    <ImageInfo>k__BackingField:
+      coordinate:
+        ra: 20.61
+        dec: 43.49
+      scale: 2.45
+      angle: 0
+    <Coordinate>k__BackingField:
+      ra: 20.31
+      dec: 40.3
+    <Lines>k__BackingField:
+    - <Lines>k__BackingField:
+      - from: 100128
+        to: 96858
+      - from: 100128
+        to: 97799
+      - from: 100128
+        to: 102157
+      - from: 100128
+        to: 101767
+    - <Lines>k__BackingField:
+      - from: 102157
+        to: 104394
+      - from: 101767
+        to: 103081
+      - from: 101767
+        to: 99529
+      - from: 96858
+        to: 95554
+      - from: 97799
+        to: 95648
+    - <Lines>k__BackingField:
+      - from: 104394
+        to: 103081
+      - from: 99529
+        to: 95554
+      - from: 95554
+        to: 94484
+    stars:
+      keys: 14710100657301001c7401008074010042750100a0750100a47501000876010000770100557701008a77010079780100827801004c7901002b7a01005a7a0100da7a0100267c0100277c01002c7c0100177d0100d07d0100dd7d0100077e0100427f0100d47f01009b810100aa820100f8830100088401001c8401007b840100c98401008b850100ca850100d785010020870100a4870100b5880100e5880100858901008e890100cc890100188a0100358a01001c8b01003e8c0100688d0100878d0100d68d0100ea8e01000d8f0100728f0100f98f01007190010066910100a992010084930100e89301002d950100b3950100c7950100cb950100ca970100659801003c9901006099010090990100ff9b0100819c0100189d01009b9e0100e29e0100819f0100a0a0010002a101002ba1010043a101009ea10100d7a10100b6a2010022cd0100
+      values:
+      - <Coordinate>k__BackingField:
+          ra: 19.2850456237793
+          dec: 53.3684577941895
+        <Color>k__BackingField: {r: 1, g: 0.972549, b: 0.9372549, a: 1}
+        <Magnitude>k__BackingField: 3.79999995231628
+      - <Coordinate>k__BackingField:
+          ra: 19.4021053314209
+          dec: 29.621337890625
+        <Color>k__BackingField: {r: 0.7294118, g: 0.8117647, b: 1, a: 1}
+        <Magnitude>k__BackingField: 4.98999977111816
+      - <Coordinate>k__BackingField:
+          ra: 19.4358692169189
+          dec: 36.3178977966309
+        <Color>k__BackingField: {r: 0.7294118, g: 0.8117647, b: 1, a: 1}
+        <Magnitude>k__BackingField: 5.17000007629395
+      - <Coordinate>k__BackingField:
+          ra: 19.4572105407715
+          dec: 52.3204345703125
+        <Color>k__BackingField: {r: 0.78039217, g: 0.84705883, b: 1, a: 1}
+        <Magnitude>k__BackingField: 5.73000001907349
+      - <Coordinate>k__BackingField:
+          ra: 19.4950981140137
+          dec: 51.7297782897949
+        <Color>k__BackingField: {r: 0.85490197, g: 0.8980392, b: 1, a: 1}
+        <Magnitude>k__BackingField: 3.75999999046326
+      - <Coordinate>k__BackingField:
+          ra: 19.5120220184326
+          dec: 27.959680557251
+        <Color>k__BackingField: {r: 1, g: 0.9529412, b: 0.8980392, a: 1}
+        <Magnitude>k__BackingField: 3.04999995231628
+      - <Coordinate>k__BackingField:
+          ra: 19.5126094818115
+          dec: 27.9652767181396
+        <Color>k__BackingField: {r: 0.7294118, g: 0.8117647, b: 1, a: 1}
+        <Magnitude>k__BackingField: 5.11999988555908
+      - <Coordinate>k__BackingField:
+          ra: 19.5295333862305
+          dec: 34.4529685974121
+        <Color>k__BackingField: {r: 0.7137255, g: 0.8, b: 1, a: 1}
+        <Magnitude>k__BackingField: 4.73999977111816
+      - <Coordinate>k__BackingField:
+          ra: 19.5808124542236
+          dec: 29.4629535675049
+        <Color>k__BackingField: {r: 1, g: 1, b: 0.99607843, a: 1}
+        <Magnitude>k__BackingField: 5.3899998664856
+      - <Coordinate>k__BackingField:
+          ra: 19.5967502593994
+          dec: 36.9445381164551
+        <Color>k__BackingField: {r: 0.7490196, g: 0.8235294, b: 1, a: 1}
+        <Magnitude>k__BackingField: 6.03000020980835
+      - <Coordinate>k__BackingField:
+          ra: 19.6073703765869
+          dec: 50.2211036682129
+        <Color>k__BackingField: {r: 0.98039216, g: 0.9843137, b: 1, a: 1}
+        <Magnitude>k__BackingField: 4.48999977111816
+      - <Coordinate>k__BackingField:
+          ra: 19.6562786102295
+          dec: 30.1533203125
+        <Color>k__BackingField: {r: 1, g: 0.972549, b: 0.9372549, a: 1}
+        <Magnitude>k__BackingField: 4.67999982833862
+      - <Coordinate>k__BackingField:
+          ra: 19.657356262207
+          dec: 42.8182792663574
+        <Color>k__BackingField: {r: 0.7490196, g: 0.8235294, b: 1, a: 1}
+        <Magnitude>k__BackingField: 5.40999984741211
+      - <Coordinate>k__BackingField:
+          ra: 19.6969318389893
+          dec: 50.5250587463379
+        <Color>k__BackingField: {r: 1, g: 0.99607843, b: 0.99607843, a: 1}
+        <Magnitude>k__BackingField: 5.98999977111816
+      - <Coordinate>k__BackingField:
+          ra: 19.7379455566406
+          dec: 37.3543548583984
+        <Color>k__BackingField: {r: 1, g: 0.972549, b: 0.9372549, a: 1}
+        <Magnitude>k__BackingField: 4.8899998664856
+      - <Coordinate>k__BackingField:
+          ra: 19.7495765686035
+          dec: 45.1308097839355
+        <Color>k__BackingField: {r: 0.78039217, g: 0.84705883, b: 1, a: 1}
+        <Magnitude>k__BackingField: 2.85999989509583
+      - <Coordinate>k__BackingField:
+          ra: 19.7737770080566
+          dec: 33.727596282959
+        <Color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+        <Magnitude>k__BackingField: 5
+      - <Coordinate>k__BackingField:
+          ra: 19.8427543640137
+          dec: 32.9140586853027
+        <Color>k__BackingField: {r: 1, g: 0.8039216, b: 0.5686275, a: 1}
+        <Magnitude>k__BackingField: 7.90999984741211
+      - <Coordinate>k__BackingField:
+          ra: 19.8427772521973
+          dec: 38.7224197387695
+        <Color>k__BackingField: {r: 1, g: 0.8627451, b: 0.7058824, a: 1}
+        <Magnitude>k__BackingField: 5.17999982833862
+      - <Coordinate>k__BackingField:
+          ra: 19.8438129425049
+          dec: 52.9880027770996
+        <Color>k__BackingField: {r: 1, g: 0.92156863, b: 0.83137256, a: 1}
+        <Magnitude>k__BackingField: 5.03000020980835
+      - <Coordinate>k__BackingField:
+          ra: 19.8881607055664
+          dec: 57.5234832763672
+        <Color>k__BackingField: {r: 0.7137255, g: 0.8, b: 1, a: 1}
+        <Magnitude>k__BackingField: 5.1399998664856
+      - <Coordinate>k__BackingField:
+          ra: 19.9271621704102
+          dec: 52.4389495849609
+        <Color>k__BackingField: {r: 0.8392157, g: 0.8862745, b: 1, a: 1}
+        <Magnitude>k__BackingField: 4.90999984741211
+      - <Coordinate>k__BackingField:
+          ra: 19.9310436248779
+          dec: 38.4867057800293
+        <Color>k__BackingField: {r: 0.7490196, g: 0.8235294, b: 1, a: 1}
+        <Magnitude>k__BackingField: 4.94999980926514
+      - <Coordinate>k__BackingField:
+          ra: 19.9384365081787
+          dec: 35.083423614502
+        <Color>k__BackingField: {r: 1, g: 0.9607843, b: 0.91764706, a: 1}
+        <Magnitude>k__BackingField: 3.89000010490417
+      - <Coordinate>k__BackingField:
+          ra: 19.998664855957
+          dec: 37.0428848266602
+        <Color>k__BackingField: {r: 0.7137255, g: 0.8, b: 1, a: 1}
+        <Magnitude>k__BackingField: 5.15000009536743
+      - <Coordinate>k__BackingField:
+          ra: 20.0226554870605
+          dec: 50.1046943664551
+        <Color>k__BackingField: {r: 1, g: 0.94509804, b: 0.8862745, a: 1}
+        <Magnitude>k__BackingField: 5.05999994277954
+      - <Coordinate>k__BackingField:
+          ra: 20.1060466766357
+          dec: 35.972469329834
+        <Color>k__BackingField: {r: 1, g: 0.99215686, b: 0.98039216, a: 1}
+        <Magnitude>k__BackingField: 5.38000011444092
+      - <Coordinate>k__BackingField:
+          ra: 20.1571159362793
+          dec: 36.8396224975586
+        <Color>k__BackingField: {r: 0.7137255, g: 0.8, b: 1, a: 1}
+        <Magnitude>k__BackingField: 4.92999982833862
+      - <Coordinate>k__BackingField:
+          ra: 20.2216815948486
+          dec: 46.815673828125
+        <Color>k__BackingField: {r: 0.827451, g: 0.8784314, b: 1, a: 1}
+        <Magnitude>k__BackingField: 4.80000019073486
+      - <Coordinate>k__BackingField:
+          ra: 20.223295211792
+          dec: 56.5677223205566
+        <Color>k__BackingField: {r: 0.8392157, g: 0.8862745, b: 1, a: 1}
+        <Magnitude>k__BackingField: 4.28000020980835
+      - <Coordinate>k__BackingField:
+          ra: 20.2271957397461
+          dec: 46.7413291931152
+        <Color>k__BackingField: {r: 1, g: 0.92156863, b: 0.83137256, a: 1}
+        <Magnitude>k__BackingField: 3.79999995231628
+      - <Coordinate>k__BackingField:
+          ra: 20.2422313690186
+          dec: 36.8063011169434
+        <Color>k__BackingField: {r: 0.85490197, g: 0.8980392, b: 1, a: 1}
+        <Magnitude>k__BackingField: 4.92999982833862
+      - <Coordinate>k__BackingField:
+          ra: 20.2578678131104
+          dec: 47.7142066955566
+        <Color>k__BackingField: {r: 1, g: 0.8980392, b: 0.78039217, a: 1}
+        <Magnitude>k__BackingField: 3.96000003814697
+      - <Coordinate>k__BackingField:
+          ra: 20.2964458465576
+          dec: 38.0329284667969
+        <Color>k__BackingField: {r: 0.9647059, g: 0.972549, b: 1, a: 1}
+        <Magnitude>k__BackingField: 4.76999998092651
+      - <Coordinate>k__BackingField:
+          ra: 20.3079586029053
+          dec: 36.9998016357422
+        <Color>k__BackingField: {r: 0.8117647, g: 0.8666667, b: 1, a: 1}
+        <Magnitude>k__BackingField: 5.57999992370605
+      - <Coordinate>k__BackingField:
+          ra: 20.3108520507813
+          dec: 34.9827766418457
+        <Color>k__BackingField: {r: 1, g: 0.99607843, b: 0.99607843, a: 1}
+        <Magnitude>k__BackingField: 5.1399998664856
+      - <Coordinate>k__BackingField:
+          ra: 20.3704738616943
+          dec: 40.2566795349121
+        <Color>k__BackingField: {r: 1, g: 0.99607843, b: 0.99607843, a: 1}
+        <Magnitude>k__BackingField: 2.23000001907349
+      - <Coordinate>k__BackingField:
+          ra: 20.3976726531982
+          dec: 32.1901702880859
+        <Color>k__BackingField: {r: 1, g: 0.9137255, b: 0.8117647, a: 1}
+        <Magnitude>k__BackingField: 4.42999982833862
+      - <Coordinate>k__BackingField:
+          ra: 20.4506301879883
+          dec: 49.3833656311035
+        <Color>k__BackingField: {r: 0.9490196, g: 0.9607843, b: 1, a: 1}
+        <Magnitude>k__BackingField: 5.73000001907349
+      - <Coordinate>k__BackingField:
+          ra: 20.4595146179199
+          dec: 38.4403305053711
+        <Color>k__BackingField: {r: 0.827451, g: 0.8784314, b: 1, a: 1}
+        <Magnitude>k__BackingField: 5.63000011444092
+      - <Coordinate>k__BackingField:
+          ra: 20.4889965057373
+          dec: 36.4547271728516
+        <Color>k__BackingField: {r: 0.98039216, g: 0.9843137, b: 1, a: 1}
+        <Magnitude>k__BackingField: 5.90000009536743
+      - <Coordinate>k__BackingField:
+          ra: 20.4899272918701
+          dec: 30.3685550689697
+        <Color>k__BackingField: {r: 0.98039216, g: 0.9843137, b: 1, a: 1}
+        <Magnitude>k__BackingField: 4.01000022888184
+      - <Coordinate>k__BackingField:
+          ra: 20.5009822845459
+          dec: 48.9515686035156
+        <Color>k__BackingField: {r: 0.7490196, g: 0.8235294, b: 1, a: 1}
+        <Magnitude>k__BackingField: 4.94000005722046
+      - <Coordinate>k__BackingField:
+          ra: 20.5164527893066
+          dec: 36.9358406066895
+        <Color>k__BackingField: {r: 1, g: 0.972549, b: 0.9372549, a: 1}
+        <Magnitude>k__BackingField: 6.21000003814697
+      - <Coordinate>k__BackingField:
+          ra: 20.5218925476074
+          dec: 49.2202987670898
+        <Color>k__BackingField: {r: 1, g: 0.8784314, b: 0.7372549, a: 1}
+        <Magnitude>k__BackingField: 5.44000005722046
+      - <Coordinate>k__BackingField:
+          ra: 20.5650520324707
+          dec: 35.2508506774902
+        <Color>k__BackingField: {r: 1, g: 0.8745098, b: 0.7254902, a: 1}
+        <Magnitude>k__BackingField: 4.6100001335144
+      - <Coordinate>k__BackingField:
+          ra: 20.6254940032959
+          dec: 31.5725402832031
+        <Color>k__BackingField: {r: 0.7490196, g: 0.8235294, b: 1, a: 1}
+        <Magnitude>k__BackingField: 6.32000017166138
+      - <Coordinate>k__BackingField:
+          ra: 20.6840400695801
+          dec: 32.3072853088379
+        <Color>k__BackingField: {r: 1, g: 0.9843137, b: 0.972549, a: 1}
+        <Magnitude>k__BackingField: 5.53000020980835
+      - <Coordinate>k__BackingField:
+          ra: 20.6905307769775
+          dec: 45.2803382873535
+        <Color>k__BackingField: {r: 0.827451, g: 0.8784314, b: 1, a: 1}
+        <Magnitude>k__BackingField: 1.25
+      - <Coordinate>k__BackingField:
+          ra: 20.7035083770752
+          dec: 50.340030670166
+        <Color>k__BackingField: {r: 0.7294118, g: 0.8117647, b: 1, a: 1}
+        <Magnitude>k__BackingField: 5.40999984741211
+      - <Coordinate>k__BackingField:
+          ra: 20.761043548584
+          dec: 30.7197151184082
+        <Color>k__BackingField: {r: 1, g: 0.95686275, b: 0.90588236, a: 1}
+        <Magnitude>k__BackingField: 4.21999979019165
+      - <Coordinate>k__BackingField:
+          ra: 20.770191192627
+          dec: 33.9702568054199
+        <Color>k__BackingField: {r: 1, g: 0.9607843, b: 0.91764706, a: 1}
+        <Magnitude>k__BackingField: 2.48000001907349
+      - <Coordinate>k__BackingField:
+          ra: 20.7901496887207
+          dec: 36.4907188415527
+        <Color>k__BackingField: {r: 0.7490196, g: 0.8235294, b: 1, a: 1}
+        <Magnitude>k__BackingField: 4.53000020980835
+      - <Coordinate>k__BackingField:
+          ra: 20.815637588501
+          dec: 46.1141357421875
+        <Color>k__BackingField: {r: 1, g: 1, b: 0.99607843, a: 1}
+        <Magnitude>k__BackingField: 4.80999994277954
+      - <Coordinate>k__BackingField:
+          ra: 20.8347034454346
+          dec: 44.0593032836914
+        <Color>k__BackingField: {r: 0.8862745, g: 0.91764706, b: 1, a: 1}
+        <Magnitude>k__BackingField: 5.05999994277954
+      - <Coordinate>k__BackingField:
+          ra: 20.88743019104
+          dec: 44.3872604370117
+        <Color>k__BackingField: {r: 0.7137255, g: 0.8, b: 1, a: 1}
+        <Magnitude>k__BackingField: 4.80000019073486
+      - <Coordinate>k__BackingField:
+          ra: 20.9528923034668
+          dec: 41.1671371459961
+        <Color>k__BackingField: {r: 0.8, g: 0.85882354, b: 1, a: 1}
+        <Magnitude>k__BackingField: 3.94000005722046
+      - <Coordinate>k__BackingField:
+          ra: 20.9970989227295
+          dec: 47.5209503173828
+        <Color>k__BackingField: {r: 0.7490196, g: 0.8235294, b: 1, a: 1}
+        <Magnitude>k__BackingField: 4.73999977111816
+      - <Coordinate>k__BackingField:
+          ra: 21.019702911377
+          dec: 46.1557731628418
+        <Color>k__BackingField: {r: 0.68235296, g: 0.7764706, b: 1, a: 1}
+        <Magnitude>k__BackingField: 5.38000011444092
+      - <Coordinate>k__BackingField:
+          ra: 21.0821838378906
+          dec: 43.9278526306152
+        <Color>k__BackingField: {r: 1, g: 0.8745098, b: 0.7254902, a: 1}
+        <Magnitude>k__BackingField: 3.72000002861023
+      - <Coordinate>k__BackingField:
+          ra: 21.1100254058838
+          dec: 47.6484031677246
+        <Color>k__BackingField: {r: 1, g: 0.8784314, b: 0.7372549, a: 1}
+        <Magnitude>k__BackingField: 4.55999994277954
+      - <Coordinate>k__BackingField:
+          ra: 21.1149845123291
+          dec: 38.7494163513184
+        <Color>k__BackingField: {r: 1, g: 0.95686275, b: 0.90588236, a: 1}
+        <Magnitude>k__BackingField: 5.19999980926514
+      - <Coordinate>k__BackingField:
+          ra: 21.1153507232666
+          dec: 38.7420539855957
+        <Color>k__BackingField: {r: 1, g: 0.91764706, b: 0.8235294, a: 1}
+        <Magnitude>k__BackingField: 6.05000019073486
+      - <Coordinate>k__BackingField:
+          ra: 21.2156066894531
+          dec: 30.2269153594971
+        <Color>k__BackingField: {r: 1, g: 0.9647059, b: 0.92941177, a: 1}
+        <Magnitude>k__BackingField: 3.21000003814697
+      - <Coordinate>k__BackingField:
+          ra: 21.246524810791
+          dec: 38.0453186035156
+        <Color>k__BackingField: {r: 0.98039216, g: 0.9843137, b: 1, a: 1}
+        <Magnitude>k__BackingField: 3.74000000953674
+      - <Coordinate>k__BackingField:
+          ra: 21.2902641296387
+          dec: 39.3946800231934
+        <Color>k__BackingField: {r: 0.827451, g: 0.8784314, b: 1, a: 1}
+        <Magnitude>k__BackingField: 4.21999979019165
+      - <Coordinate>k__BackingField:
+          ra: 21.2986335754395
+          dec: 34.8968963623047
+        <Color>k__BackingField: {r: 0.7294118, g: 0.8117647, b: 1, a: 1}
+        <Magnitude>k__BackingField: 4.40999984741211
+      - <Coordinate>k__BackingField:
+          ra: 21.3075523376465
+          dec: 43.9459457397461
+        <Color>k__BackingField: {r: 0.7490196, g: 0.8235294, b: 1, a: 1}
+        <Magnitude>k__BackingField: 5.03999996185303
+      - <Coordinate>k__BackingField:
+          ra: 21.4297275543213
+          dec: 36.6673851013184
+        <Color>k__BackingField: {r: 0.8, g: 0.85882354, b: 1, a: 1}
+        <Magnitude>k__BackingField: 5.92999982833862
+      - <Coordinate>k__BackingField:
+          ra: 21.4559345245361
+          dec: 37.1167984008789
+        <Color>k__BackingField: {r: 0.7137255, g: 0.8, b: 1, a: 1}
+        <Magnitude>k__BackingField: 5.30000019073486
+      - <Coordinate>k__BackingField:
+          ra: 21.4908199310303
+          dec: 46.540584564209
+        <Color>k__BackingField: {r: 1, g: 0.972549, b: 0.9372549, a: 1}
+        <Magnitude>k__BackingField: 5.21999979019165
+      - <Coordinate>k__BackingField:
+          ra: 21.5663471221924
+          dec: 45.5918388366699
+        <Color>k__BackingField: {r: 1, g: 0.98039216, b: 0.9607843, a: 1}
+        <Magnitude>k__BackingField: 3.98000001907349
+      - <Coordinate>k__BackingField:
+          ra: 21.5796012878418
+          dec: 38.5340538024902
+        <Color>k__BackingField: {r: 1, g: 0.9529412, b: 0.8980392, a: 1}
+        <Magnitude>k__BackingField: 4.86999988555908
+      - <Coordinate>k__BackingField:
+          ra: 21.6158256530762
+          dec: 40.4135208129883
+        <Color>k__BackingField: {r: 0.8862745, g: 0.91764706, b: 1, a: 1}
+        <Magnitude>k__BackingField: 5.03999996185303
+      - <Coordinate>k__BackingField:
+          ra: 21.6697521209717
+          dec: 43.2738418579102
+        <Color>k__BackingField: {r: 1, g: 0.8745098, b: 0.7254902, a: 1}
+        <Magnitude>k__BackingField: 5.09000015258789
+      - <Coordinate>k__BackingField:
+          ra: 21.6928482055664
+          dec: 40.8052215576172
+        <Color>k__BackingField: {r: 0.827451, g: 0.8784314, b: 1, a: 1}
+        <Magnitude>k__BackingField: 6.07000017166138
+      - <Coordinate>k__BackingField:
+          ra: 21.7015724182129
+          dec: 51.1896209716797
+        <Color>k__BackingField: {r: 0.7294118, g: 0.8117647, b: 1, a: 1}
+        <Magnitude>k__BackingField: 4.69000005722046
+      - <Coordinate>k__BackingField:
+          ra: 21.7063789367676
+          dec: 41.077018737793
+        <Color>k__BackingField: {r: 0.8117647, g: 0.8666667, b: 1, a: 1}
+        <Magnitude>k__BackingField: 5.73000001907349
+      - <Coordinate>k__BackingField:
+          ra: 21.7237911224365
+          dec: 38.2835884094238
+        <Color>k__BackingField: {r: 0.78039217, g: 0.84705883, b: 1, a: 1}
+        <Magnitude>k__BackingField: 5.69000005722046
+      - <Coordinate>k__BackingField:
+          ra: 21.7357158660889
+          dec: 28.7426319122314
+        <Color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+        <Magnitude>k__BackingField: 4.48999977111816
+      - <Coordinate>k__BackingField:
+          ra: 21.7798900604248
+          dec: 49.3095703125
+        <Color>k__BackingField: {r: 0.7294118, g: 0.8117647, b: 1, a: 1}
+        <Magnitude>k__BackingField: 4.23000001907349
+      - <Coordinate>k__BackingField:
+          ra: 21.7356395721436
+          dec: 28.7430992126465
+        <Color>k__BackingField: {r: 0.9647059, g: 0.972549, b: 1, a: 1}
+        <Magnitude>k__BackingField: 6.07999992370605
+  <Star>k__BackingField: {fileID: 21300000, guid: bad8b87d02150b5458b007fdbd4bf903, type: 3}
+  <Preview>k__BackingField: {fileID: 21300000, guid: 589fede81ecdfa64da61d7c90c1ea883, type: 3}
