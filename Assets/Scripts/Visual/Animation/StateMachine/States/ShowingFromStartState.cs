@@ -16,8 +16,21 @@
         {
             previewAnimationLaunched = false;
             
+            if (settings.ShowPreview)
+            {
+                previewAnimation.Show(finishedCallback: OnPreviewShown);
+            }
+            else
+            {
+                OnPreviewShown();
+            }
+        }
+        
+        private void OnPreviewShown()
+        {
             LaunchLineAnimation();
         }
+        
 
         private void LaunchLineAnimation()
         {
@@ -48,14 +61,7 @@
             
             if (indexContainer.Value + 1 == starLineAnimSets.Length)
             {
-                if (settings.ShowPreview)
-                {
-                    previewAnimation.Show(finishedCallback: OnPreviewShown);
-                }
-                else
-                {
-                    OnPreviewShown();
-                }
+                OnLineAnimationFinished();
             }
             else
             {
@@ -64,7 +70,7 @@
             }
         }
 
-        private void OnPreviewShown()
+        private void OnLineAnimationFinished()
         {
             RaiseChangeState(AnimationStateType.Shown);
         }
@@ -92,7 +98,7 @@
                     starLineSet.StopLineAnimations();
                 }
                 
-                OnLineSetFinished();
+                OnLineAnimationFinished();
             }
         }
     }
